@@ -2,6 +2,15 @@
 
 class BaseController extends Controller {
 
+    protected function display($view, $metadatas, $data = array())
+    {
+		foreach($metadatas as $key => $value)
+		{
+			$this->layout->$key = $value;
+		}
+        $this->layout->content = View::make($view, $data);
+    }
+
 	/**
 	 * Setup the layout used by the controller.
 	 *
@@ -15,4 +24,6 @@ class BaseController extends Controller {
 		}
 	}
 
-}
+};
+
+?>
