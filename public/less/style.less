@@ -1,0 +1,335 @@
+@gray: #4C4C4C;
+@red: #B4311C;
+@lightgray: #FAFAFA;
+
+@fsize-4: 15px;
+@fsize-5: 18px;
+@fsize-6: 21px;
+@fsize-7: 24px;
+@fsize-8: 30px;
+@fsize-9: 36px;
+@fsize-10: 42px;
+@fsize-11: 48px;
+@fsize-12: 60px;
+
+@unit: 25px;
+
+@border: 1px solid lighten(@gray, 25%);
+
+a
+{
+	color: inherit;
+	text-decoration: inherit;
+}
+
+html
+{
+	overflow-y: scroll;
+
+	> body
+	{
+		color: @gray;
+		font-family: 'Futura Light', Arial, sans-serif;
+		font-size: 0;
+		margin: @unit * 1.5 auto;
+		max-width: @fsize-7 * 30;
+		width: 90%;
+
+		> *
+		{
+			font-size: @fsize-5;
+			line-height: @fsize-7;
+		}
+
+		> header
+		{
+			display: inline-block;
+			width: 30%;
+
+			h1
+			{
+				color: @red;
+				font-size: @fsize-12;
+				font-weight: 100;
+				left: -4px;
+				line-height: 80%;
+				margin: 0;
+				position: relative;
+			}
+		}
+
+		> nav
+		{
+			display: inline-block;
+			font-size: @fsize-6;
+			line-height: 100%;
+			text-align: right;
+			width: 100%;
+
+			ul
+			{
+				margin: 0;
+				padding: 0;
+
+				li
+				{
+					display: inline-block;
+				}
+
+				li.headline
+				{
+					float: left;
+				}
+
+				li + li:before
+				{
+					content: ' - ';
+				}
+
+				li.headline + li:before
+				{
+					content: none;
+				}
+			}
+		}
+
+		> section
+		{
+			margin: @unit 0;
+			padding: @unit 0;
+
+			> *:first-child
+			{
+				margin-top: 0;
+			}
+
+			> *:last-child
+			{
+				margin-bottom: 0;
+			}
+
+			a
+			{
+				color: darken(@red, 10%);
+				text-decoration: inherit;
+
+				&:hover
+				{
+					color: lighten(@red, 10%);
+				}
+			}
+
+			blockquote
+			{
+				border-left: 3px solid lighten(@gray, 25%);
+				font-style: italic;
+				margin: 0;
+				padding: 0 0 0 2.5%;
+				width: 95%;
+			}
+
+			em
+			{
+				font-style: italic;
+			}
+
+			figure
+			{
+				text-align: center;
+			}
+
+			input, textarea
+			{
+				box-shadow: none;
+				border: @border;
+				font-size: @fsize-4;
+				margin: (@unit / 2) 0;
+				padding: 0.2em 0;
+				width: 100%;
+			}
+
+			select
+			{
+				width: 100%;
+				background: none;
+				border-radius: 0;
+				border: @border;
+			}
+
+			textarea
+			{
+				height: 20em;
+				resize: vertical;
+			}
+
+			textarea.error
+			{
+				border-color: @red;
+			}
+
+			label
+			{
+				input, textarea
+				{
+					margin-top: 0;
+				}
+			}
+
+			input[type=submit]
+			{
+				background: none;
+				color: @gray;
+				text-transform: capitalize;
+			}
+
+			input[type=submit]:hover
+			{
+				background: @lightgray;
+			}
+
+			input[type=checkbox], input[type=radio]
+			{
+				display: inline;
+				width: auto;
+			}
+
+			hr
+			{
+				border: 0;
+				border-top: @border;
+				margin: 1em auto;
+				width: 50%;
+			}
+
+			h1,
+			h2,
+			h3
+			{
+				font-weight: 100;
+				line-height: 100%;
+				margin: 1.25em 0 0.75em 0;
+			}
+
+			h1
+			{
+				font-size: @fsize-9;
+			}
+
+			h2
+			{
+				font-size: @fsize-8;
+			}
+
+			h3
+			{
+				font-size: @fsize-7;
+			}
+
+			h1 + p,
+			h2 + p,
+			h3 + p
+			{
+				margin-top: @unit / 2;
+			}
+
+			pre
+			{
+				background-color: @lightgray;
+				font-size: @fsize-4;
+			}
+
+			article
+			{
+				h1
+				{
+					font-size: @fsize-8;
+				}
+
+				h2
+				{
+					font-size: @fsize-7;
+				}
+
+				h3
+				{
+					font-size: @fsize-6;
+				}
+			}
+
+			nav
+			{
+				ul
+				{
+					margin: 0;
+					padding: 0;
+
+					li
+					{
+						display: inline-block;
+					}
+
+					li:before
+					{
+						content: none;
+					}
+
+					li + li:before
+					{
+						content: ' - ';
+					}
+				}
+			}
+
+			p
+			{
+				&.error:before
+				{
+					color: @red;
+					content: '! ';
+					font-size: @fsize-6;
+				}
+			}
+
+			strong
+			{
+				color: @red;
+				font-weight: 100;
+			}
+
+			table
+			{
+				text-align: left;
+				width: 100%;
+			}
+
+			ul
+			{
+				list-style: none;
+				padding-left: @unit;
+
+				li:before
+				{
+					content: '– ';
+				}
+			}
+		}
+
+		> footer
+		{
+			margin: 0;
+			padding: 0;
+			text-align: right;
+
+			img
+			{
+				height: @unit * 1.0;
+
+				&.insigna
+				{
+					height: @unit * 0.50;
+					margin-bottom: @unit * 0.25;
+				}
+			}
+		}
+	}
+}
