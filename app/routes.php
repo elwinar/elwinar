@@ -14,14 +14,4 @@ switch($domain)
     break;
 }
 
-App::missing(function($exception)
-{
-	return View::make('errors.layout', array('title' => 'Erreur 404'))->nest('content', 'errors.404');
-});
-
-App::fatal(function($exception)
-{
-	return View::make('errors.layout', array('title' => 'Erreur dans l\'application'))->nest('content', 'errors.fatal', array('exception' => $exception));
-});
-
 ?>
