@@ -1,12 +1,10 @@
 <?php namespace Www;
 
 class JsonPrettyPrinterController extends \BaseController {
-
-    protected $layout = 'www.layout';
 	
 	public function show()
 	{
-		$this->display('www.tools.json-pretty-printer', array(
+		$this->display('tools.json-pretty-printer', array(
 			'title' => 'Formatteur JSON',
 			'description' => 'Un simple outil de remise en forme d\'une chaine JSON',
 		));

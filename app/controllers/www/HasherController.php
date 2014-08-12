@@ -1,12 +1,10 @@
 <?php namespace Www;
 
 class HasherController extends \BaseController {
-
-    protected $layout = 'www.layout';
 	
 	public function show()
 	{
-		$this->display('www.tools.hasher', array(
+		$this->display('tools.hasher', array(
 			'title' => 'Hasher',
 			'description' => 'Formulaire de hashage de chaines',
 		));

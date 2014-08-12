@@ -3,41 +3,44 @@ module.exports = function(grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
-		// Metadata.
-		pkg: grunt.file.readJSON('package.json'),
-		less: {
+		concat: {
 			options: {
-				ieCompat: true,
+				separator: ';',
 			},
 			build: {
+				src: [
+				'./bower_components/jquery/dist/jquery.js',
+				'./app/scripts/script.js'
+				],
+				dest: './public/script.js',
+			},
+		},
+		less: {
+			build: {
 				files: {
-					'public/css/style.css': 'public/less/*',
+					"public/style.css": "app/styles/style.less"
 				},
 			},
 		},
+		uglify: {
+		},
 		watch: {
-			grunt: {
-				files: [ 'Gruntfile.js' ],
-				options: {
-					reload: true,
-				},
+			styles: {
+				files: 'app/styles/*.less',
+				tasks: ['less'],
 			},
-			less: {
-				files: [ 'public/less/*' ],
-				tasks: [ 'less' ],
-				options: {
-					spawn: false,
-				},
+			scripts: {
+				files: 'app/scripts/*.js',
+				tasks: ['concat', 'uglify'],
 			},
 		},
 	});
 
-	// These plugins provide necessary tasks.
-
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	// Default task.
-	grunt.registerTask('default', ['less']);
+	grunt.registerTask('default', ['less','']);
 
 };

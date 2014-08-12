@@ -4,7 +4,7 @@
 foreach($articles as $article)
 {
 ?>
-                <li><?php echo $article->created_at->format('d.m.Y'); ?> / <a href="article/<?php echo $article->slug; ?>"><?php echo $article->title; ?></a></li>
+                <li><?= $article->created_at->format('d.m.Y'); ?> / <a href="article/<?= $article->slug; ?>"><?= $article->title; ?></a></li>
 <?php
 }
 ?>

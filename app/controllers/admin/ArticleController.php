@@ -1,8 +1,6 @@
 <?php namespace Admin;
 
 class ArticleController extends \BaseController {
-	
-    protected $layout = 'admin.layout';
     
     public function __construct()
     {
@@ -12,17 +10,17 @@ class ArticleController extends \BaseController {
 	public function index()
 	{
         $articles = \Article::orderBy('created_at', 'desc')->get();
-        $this->display('admin.article.index', array('title' => 'Liste des articles'), array('articles' => $articles));
+        $this->display('article.index', array('title' => 'Liste des articles'), array('articles' => $articles));
 	}
 	
 	public function show($article)
 	{
-        $this->display('admin.article.show', array('title' => 'Article : '.$article->title), array('article' => $article));
+        $this->display('article.show', array('title' => 'Article : '.$article->title), array('article' => $article));
 	}
 	
 	public function create()
 	{
-        $this->display('admin.article.create', array('title' => 'Nouvel article'));
+        $this->display('article.create', array('title' => 'Nouvel article'));
 	}
 	
 	public function store()
@@ -49,7 +47,7 @@ class ArticleController extends \BaseController {
 	
 	public function edit($article)
 	{
-        $this->display('admin.article.edit', array('title' => 'Article : '.$article->title), array('article' => $article));
+        $this->display('article.edit', array('title' => 'Article : '.$article->title), array('article' => $article));
 	}
 	
 	public function update($article)

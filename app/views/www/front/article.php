@@ -1,1 +1,1 @@
-<?php echo Markdown::string($article->text); ?>
+<?= Markdown::string($article->text); ?>

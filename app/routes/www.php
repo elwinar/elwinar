@@ -21,7 +21,6 @@ Route::get('sent', '\Www\FrontController@sent');
 Route::get('articles', '\Www\FrontController@articles');
 Route::get('article/{article}', '\Www\FrontController@article');
 Route::get('tools', '\Www\FrontController@tools');
-Route::get('sitemap', '\Www\FrontController@sitemap');
 
 Route::get('tools/json-pretty-printer', '\Www\JsonPrettyPrinterController@show');
 Route::post('tools/json-pretty-printer', '\Www\JsonPrettyPrinterController@process');

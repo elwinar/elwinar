@@ -6,8 +6,6 @@ use Input;
 use Redirect;
 
 class FrontController extends BaseController {
-
-    protected $layout = 'admin.layout';
     
     public function __construct()
     {
@@ -26,12 +24,12 @@ class FrontController extends BaseController {
     
     public function home()
     {
-        $this->display('admin.front.home', array('title' => '\o'));
+        $this->display('front.home', array('title' => '\o'));
     }
 
 	public function signin()
 	{
-        $this->display('admin.front.login', array('title' => 'Connexion'));
+        $this->display('front.login', array('title' => 'Connexion'));
 	}
     
     public function login()

@@ -2,20 +2,22 @@
 
 class BaseController extends Controller {
 
-    protected function display($view, $metadatas, $data = array())
-    {
+    protected $layout = 'layout';
+
+	protected function display($view, $metadatas, $data = array())
+	{
 		foreach($metadatas as $key => $value)
 		{
 			$this->layout->$key = $value;
 		}
-        $this->layout->content = View::make($view, $data);
-    }
+		
+		if(View::exists(subdomain().'.nav')) {
+			$this->layout->nav = View::make(subdomain().'.nav', $data);
+		}
+		
+		$this->layout->content = View::make(subdomain().'.'.$view, $data);
+	}
 
-	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @return void
-	 */
 	protected function setupLayout()
 	{
 		if ( ! is_null($this->layout))

@@ -1,12 +1,10 @@
 <?php namespace Www;
 
 class SlavePasswordGeneratorController extends \BaseController {
-
-    protected $layout = 'www.layout';
 	
 	public function show()
 	{
-		$this->display('www.tools.slave-password-generator', array(
+		$this->display('tools.slave-password-generator', array(
 			'title' => 'Générateur de mots de passe',
 			'description' => 'Un générateur de mots de passe intelligent',
 		));

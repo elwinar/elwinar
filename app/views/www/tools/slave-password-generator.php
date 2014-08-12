@@ -1,9 +1,12 @@
 			<h1>Générateur de mots de passe esclave</h1>
-			<form method="POST" id="password-generator">
-				<label>Mot de passe maître <input type="text" name="master" value="<?php echo \Input::old('master', ''); ?>"></label>
-				<label>Clé esclave <input type="text" name="slave" value="<?php echo \Input::old('slave', ''); ?>"></label>
-				<input type="submit" name="submit" value="Générer">
-				<label>Mot de passe esclave <input type="text" name="result" value="<?php echo (Session::get('result', '') !== 'null')?Session::get('result', ''):''; ?>" readonly></label>
+			<form method="POST" id="password-generator" class="form">
+				<label>Mot de passe maître</label>
+				<input class="form-control" type="text" name="master" value="<?= \Input::old('master', ''); ?>"><br>
+				<label>Clé esclave</label>
+				<input class="form-control" type="text" name="slave" value="<?= \Input::old('slave', ''); ?>"><br>
+				<input class="form-control" type="submit" name="submit" value="Générer">
+				<label>Mot de passe esclave</label>
+				<input class="form-control" type="text" name="result" value="<?= (Session::get('result', '') !== 'null')?Session::get('result', ''):''; ?>" readonly>
 			</form>
 			<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 			<script>
