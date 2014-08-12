@@ -22,8 +22,6 @@ module.exports = function(grunt) {
 				},
 			},
 		},
-		uglify: {
-		},
 		watch: {
 			styles: {
 				files: 'app/styles/*.less',
@@ -31,7 +29,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: 'app/scripts/*.js',
-				tasks: ['concat', 'uglify'],
+				tasks: ['concat'],
 			},
 		},
 	});
@@ -41,6 +39,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['less','']);
+	grunt.registerTask('default', ['less','concat']);
 
 };

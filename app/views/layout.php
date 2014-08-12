@@ -43,12 +43,12 @@ if(isset($keywords))
 			</a>
 			<nav class="navbar-right">
 				<ul class="nav nav-pills">
-<?= $nav; ?>
+					<?= $nav; ?>
 				</ul>
 			</nav>
 		</header>
 		<section>
-<?= $content; ?>
+			<?= $content; ?>
 		</section>
 		<footer class="pull-right">
 			<a href="http://www.w3.org/html/wg/drafts/html/master/"><span class="openwebicons-html5 red big"></span></a>
