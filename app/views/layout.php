@@ -33,7 +33,8 @@ if(isset($keywords))
 <?php
 }
 ?>
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="style.css">
+		<script src="style.css"></script>
 	</head>
 	<body class="container">
 		<header class="navbar">
