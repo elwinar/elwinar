@@ -3,6 +3,7 @@
 use Article;
 use Input;
 use Mail;
+use Redirect;
 
 class FrontController extends \BaseController {
     
