@@ -27,7 +27,7 @@ class FrontController extends \BaseController {
     
     public function send()
     {
-        Mail::send('emails.contact', array('text' => Input::get('text')), function($message)
+        Mail::send('www.front.contact_mail', array('text' => Input::get('text')), function($message)
         {
             $message->from(Input::get('mail'));
             $message->to('romain.baugue@elwinar.com', 'Romain Baugue')->subject(Input::get('subject'));
