@@ -1,5 +1,9 @@
 <?php namespace Www;
 
+use Article;
+use Input;
+use Mail;
+
 class FrontController extends \BaseController {
     
     public function index()
@@ -9,7 +13,7 @@ class FrontController extends \BaseController {
 
 	public function home()
 	{
-        $articles = \Article::orderBy('created_at', 'desc')->take(5)->get();
+        $articles = Article::orderBy('created_at', 'desc')->take(5)->get();
         $this->display('front.home', array(
             'title' => 'Accueil',
             'description' => 'Site personnel de Romain Baugue, développeur spécialisé dans le web et l\'intelligence artificielle'
@@ -23,10 +27,10 @@ class FrontController extends \BaseController {
     
     public function send()
     {
-        Mail::send('emails.contact', array('text' => \Input::get('text')), function($message)
+        Mail::send('emails.contact', array('text' => Input::get('text')), function($message)
         {
-            $message->from(\Input::get('mail'));
-            $message->to('romain.baugue@elwinar.com', 'Romain Baugue')->subject(\Input::get('subject'));
+            $message->from(Input::get('mail'));
+            $message->to('romain.baugue@elwinar.com', 'Romain Baugue')->subject(Input::get('subject'));
         });
 		return Redirect::to('sent');
     }
@@ -38,7 +42,7 @@ class FrontController extends \BaseController {
     
     public function articles()
     {
-        $articles = \Article::orderBy('created_at', 'desc')->get();
+        $articles = Article::orderBy('created_at', 'desc')->get();
         $this->display('front.articles', array(
             'title' => 'Articles',
             'description' => 'Liste des articles publiés sur ce site par ordre antéchronologique'
