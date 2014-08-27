@@ -4,7 +4,7 @@ class BaseController extends Controller {
 
     protected $layout = 'layout';
 
-	protected function display($view, $metadatas, $data = array())
+	protected function display($view, $metadatas = array(), $data = array())
 	{
 		foreach($metadatas as $key => $value)
 		{
