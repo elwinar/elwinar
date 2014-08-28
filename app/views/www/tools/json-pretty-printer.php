@@ -12,12 +12,12 @@ function process()
 {
 	try
 	{
-		form.elements.data.setAttribute('class', '');
+		form.elements.data.setAttribute('class', 'form-control');
 		form.elements.result.value = JSON.stringify(JSON.parse(form.elements.data.value), undefined, 4);
 	}
 	catch(error)
 	{
-		form.elements.data.setAttribute('class', 'error');
+		form.elements.data.setAttribute('class', 'form-control error');
 	}
 }
 
