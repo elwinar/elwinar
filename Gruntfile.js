@@ -20,7 +20,11 @@ module.exports = function(grunt) {
 				dest: 'public/script.js',
 			},
 			style: {
-				src: ['app/styles/*.css', 'public/less.css'],
+				src: [
+					'bower_components/highlightjs/styles/github.css',
+					'public/less.css',
+					'app/styles/*.css',
+				],
 				dest: 'public/style.css',
 			},
 		},
