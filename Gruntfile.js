@@ -3,42 +3,63 @@ module.exports = function(grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
-		concat: {
-			options: {
-				separator: ';',
-			},
-			build: {
-				src: [
-				'./bower_components/jquery/dist/jquery.js',
-				'./app/scripts/script.js'
-				],
-				dest: './public/script.js',
-			},
-		},
 		less: {
-			build: {
+			style: {
 				files: {
-					"public/style.css": "app/styles/style.less"
+					'public/less.css': 'app/styles/style.less'
 				},
 			},
+		},
+		concat: {
+			script: {
+				src: [
+					'bower_components/jquery/dist/jquery.js',
+					'bower_components/highlightjs/highlight.pack.js',
+					'app/scripts/*.js'
+				],
+				dest: 'public/script.js',
+			},
+			style: {
+				src: ['app/styles/*.css', 'public/less.css'],
+				dest: 'public/style.css',
+			},
+		},
+		uglify: {
+			options: {
+				mangle: true
+			},
+			script: {
+				files: {
+					'public/script.min.js': ['public/script.js']
+				}
+			},
+		},
+		cssmin: {
+			style: {
+				src: 'public/style.css',
+				dest: 'public/style.min.css',
+			}
 		},
 		watch: {
 			styles: {
 				files: 'app/styles/*.less',
-				tasks: ['less'],
+				tasks: ['style'],
 			},
 			scripts: {
 				files: 'app/scripts/*.js',
-				tasks: ['concat'],
+				tasks: ['script'],
 			},
 		},
 	});
 
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-
-	grunt.registerTask('default', ['less','concat']);
+	
+	grunt.registerTask('style', ['less:style','concat:style','cssmin:style']);
+	grunt.registerTask('script', ['concat:script','uglify:script']);
+	grunt.registerTask('default', ['style','script']);
 
 };
