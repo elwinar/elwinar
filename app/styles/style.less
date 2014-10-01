@@ -45,6 +45,7 @@ body {
 		
 		> a {
 			.navbar-header();
+			float: left;
 			
 			> h1 {
 				font-size: @font-size-h1 * 1.5;
@@ -79,6 +80,8 @@ body {
 	
 	> section {
 		form {
+			margin-bottom: @line-height-computed;
+			
 			input,
 			textarea {
 				.form-control();
@@ -103,8 +106,3 @@ body {
 		}
 	}
 }
-
-form.form {
-	margin-bottom: @line-height-computed;
-}
-
