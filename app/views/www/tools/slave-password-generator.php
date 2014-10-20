@@ -1,12 +1,12 @@
 			<h1>Générateur de mots de passe esclave</h1>
-			<form method="POST" id="password-generator" class="form">
+			<form method="POST" id="password-generator">
 				<label>Mot de passe maître</label>
-				<input class="form-control" type="text" name="master" value="<?= \Input::old('master', ''); ?>"><br>
+				<input type="text" name="master" value="<?= \Input::old('master', ''); ?>"><br>
 				<label>Clé esclave</label>
-				<input class="form-control" type="text" name="slave" value="<?= \Input::old('slave', ''); ?>"><br>
-				<input class="form-control" type="submit" name="submit" value="Générer">
+				<input type="text" name="slave" value="<?= \Input::old('slave', ''); ?>"><br>
+				<input type="submit" name="submit" value="Générer">
 				<label>Mot de passe esclave</label>
-				<input class="form-control" type="text" name="result" value="<?= (Session::get('result', '') !== 'null')?Session::get('result', ''):''; ?>" readonly>
+				<input type="text" name="result" value="<?= (Session::get('result', '') !== 'null')?Session::get('result', ''):''; ?>" readonly>
 			</form>
 			<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 			<script>
@@ -41,6 +41,5 @@ form.elements.slave.addEventListener('input', listen, false);
 			<h2>Téléchargement</h2>
 			<p>J'ai prit quelques minutes pour faire une version bureau de ce logicel (en C++ &amp; Qt), que je mets ici en téléchargement.</p>
 			<ul>
-				<li><a href="files/slave-password-generator.zip">Le logiciel prêt-à-exécuter (version Windows 32 bits)</a></li>
 				<li><a href="https://github.com/elwinar/slave-password-generator">Le dépôt sur GitHub</a></li>
 			</ul>

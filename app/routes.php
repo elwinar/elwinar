@@ -9,4 +9,5 @@ foreach(File::files(app_path().'/routes') as $file) {
 		include($file);
 	});
 }
+
 ?>

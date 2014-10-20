@@ -1,8 +1,8 @@
 			<h1>Formatteur JSON</h1>
 			<form method="POST" id="pretty-printer">
-				<textarea class="form-control <?php if(Session::get('result', '') === 'null'){ echo 'error'; } ?>" name="data" rows="10"><?= Input::old('data', ''); ?></textarea>
-				<input class="form-control" type="submit" name="submit" value="Formatter"><br>
-				<textarea class="form-control" name="result" readonly rows="10"><?= (Session::get('result', '') !== 'null')?Session::get('result', ''):''; ?></textarea>
+				<textarea class="<?php if(Session::get('result', '') === 'null'){ echo 'error'; } ?>" name="data" rows="10"><?= Input::old('data', ''); ?></textarea>
+				<input type="submit" name="submit" value="Formatter"><br>
+				<textarea name="result" readonly rows="10"><?= (Session::get('result', '') !== 'null')?Session::get('result', ''):''; ?></textarea>
 			</form>
 			<script>
 var form = document.getElementById('pretty-printer');
