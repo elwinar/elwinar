@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html land="<?= Config::get('app.locale') ?>">
+<html lang="<?= Config::get('app.locale') ?>">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,16 +22,16 @@
 	</head>
 	<body>
 		<header>
-			<a href=".">
+			<a href="/">
 				<h1>Elwinar</h1>
 				<p class="headline">Minimalist by design</p>
 			</a>
 			<nav>
 				<ul>
-					<li><a href="articles">Read</a></li>
-					<li><a href="contact">Contact</a></li>
-					<li><a href="//github.com/elwinar">Code</a></li>
 					<li><a href="//stackoverflow.com/users/3472656/elwinar">Ask</a></li>
+					<li><a href="//github.com/elwinar">Code</a></li>
+					<li><a href="mailto:<?= env('APP_EMAIL') ?>">Contact</a></li>
+					<li><a href="articles">Write</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -41,6 +41,11 @@
 		<footer>
 			<a href="http://validator.w3.org/check/referer"><span class="fa fa-html5"></span></a>
 			<a href="http://jigsaw.w3.org/css-validator/check/referer"><span class="fa fa-css3"></span></a>
+<?php if(Auth::check()) { ?>
+			<a href="/logout"><span class="fa fa-lock"></span></a>
+<?php } else { ?>
+			<a href="/login"><span class="fa fa-unlock-alt"></span></a>
+<?php } ?>
 		</footer>
 	</body>
 </html>
