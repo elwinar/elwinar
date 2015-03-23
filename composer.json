@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-		"elwinar/minit": "dev-master"
+		"elwinar/minit": "dev-master",
+		"elwinar/babel": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -15,6 +15,7 @@
 @font-family-sans-serif: "Futura Light", Helvetica, Arial, sans-serif;
 @font-size-base: 18px;
 
+@text-color: @gray-light;
 @link-color: @brand-primary;
 @link-hover-color: darken(@link-color, 10%);
 
@@ -27,6 +28,11 @@
 @border-radius-base: 0;
 @border-radius-large: 0;
 
+// Here is a custom unit to use
+@u: @grid-gutter-width / 2;
+
+
+
 //** Here be dragons!
 
 a:hover {
@@ -35,7 +41,6 @@ a:hover {
 
 body {
 	.container();
-	color: @gray-light;
 	padding: 1em auto;
 	
 	> header {
@@ -60,7 +65,6 @@ body {
 		
 		> nav {
 			.pull-right();
-			
 			font-size: @font-size-base * 1.4;
 			margin-top: @font-size-h1 * 1.5 + @line-height-computed - @nav-link-padding-vertical;
 			
@@ -68,40 +72,56 @@ body {
 				.nav();
 				.nav-pills();
 				
-				
 				a {
-					color: @gray-dark;
+					color: inherit;
+					
+					&:hover {
+						color: inherit;
+					}
 				}
 			}
 		}
 	}
 	
 	> section {
+		ul.errors {
+			.text-danger;
+		}
+		
+		ul.articles {
+			a {
+				color: inherit;
+			}
+		}
+		
 		form {
 			margin-bottom: @line-height-computed;
 			
 			input,
 			textarea {
 				.form-control();
+				.input-sm();
+				margin-top: @line-height-computed;
 			}
 			
 			textarea {
 				height: 10em;
+				resize:vertical;
 			}
 		}
 	}
 	
 	> footer {
 		.pull-right();
-		margin-top: @line-height-computed;
+		margin: @line-height-computed 0;
+		font-size: @font-size-large;
 		
 		> a {
-			span {
-				color: black;
-			}
+			color: inherit;
 			
 			span.fa-html5 {
 				color: @brand-primary;
+				font-size: 1.2em;
 			}
 		}
 	}

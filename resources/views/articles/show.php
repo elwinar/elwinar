@@ -1,0 +1,3 @@
+<?php extend('app') ?>
+			<h1><?= $article->title ?></h1>
+			<?= $article->text ?>

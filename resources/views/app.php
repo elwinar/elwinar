@@ -31,7 +31,7 @@
 					<li><a href="//stackoverflow.com/users/3472656/elwinar">Ask</a></li>
 					<li><a href="//github.com/elwinar">Code</a></li>
 					<li><a href="mailto:<?= env('APP_EMAIL') ?>">Contact</a></li>
-					<li><a href="articles">Write</a></li>
+					<li><a href="articles">Read</a></li>
 				</ul>
 			</nav>
 		</header>
