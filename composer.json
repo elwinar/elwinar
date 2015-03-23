@@ -1,21 +1,20 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
-	"license": "MIT",
+	"name": "elwinar/elwinar",
+	"description": "Elwinar's website",
+	"keywords": ["website","elwinar","minimalist"],
+	"license": "The Unlicense",
+	"type": "project",
 	"require": {
-		"laravel/framework": "4.2.*",
-		"elwinar/babel": "dev-master"
+		"laravel/framework": "5.0.*",
+		"elwinar/minit": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
-			"app/controllers",
-			"app/models",
-			"app/database/migrations"
+			"database"
 		],
-		"files": [
-			"app/helpers/request.php"
-		]
+		"psr-4": {
+			"App\\": "app/"
+		}
 	},
 	"scripts": {
 		"post-install-cmd": [
@@ -27,11 +26,11 @@
 			"php artisan optimize"
 		],
 		"post-create-project-cmd": [
+			"php -r \"copy('.env.example', '.env');\"",
 			"php artisan key:generate"
 		]
 	},
 	"config": {
 		"preferred-install": "dist"
-	},
-	"minimum-stability": "stable"
+	}
 }
