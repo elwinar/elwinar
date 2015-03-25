@@ -31,6 +31,7 @@ gulp.task('scripts', function () {
 	gulp.src([
 		'bower_components/jquery/dist/jquery.js',
 		'bower_components/bootstrap/dist/js/bootstrap.js',
+		'bower_components/speakingurl/speakingurl.min.js',
 		'resources/assets/js/*.js',
 	])
 	.pipe(plumber())

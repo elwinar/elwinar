@@ -29,7 +29,14 @@ Route::get('/logout', function()
 
 Route::get('/articles', function()
 {
-	return view('articles.list');
+	if(Auth::check()) {
+		$articles = App\Article::all();
+	} else {
+		$articles = App\Article::where('is_published', true)->get();
+	}
+	return view('articles.list', [
+		'articles' => $articles,
+	]);
 });
 
 Route::get('/article/{article}', function(App\Article $article)
@@ -50,5 +57,25 @@ Route::group(['middleware' => 'auth'], function()
 	{
 		$article = App\Article::create($request->all());
 		return redirect('/article/'.$article->slug);
+	});
+	
+	Route::get('/articles/{article}/publish', function(App\Article $article)
+	{
+		$article->is_published = true;
+		$article->save();
+		return redirect()->back();
+	});
+	
+	Route::get('/articles/{article}/unpublish', function(App\Article $article)
+	{
+		$article->is_published = false;
+		$article->save();
+		return redirect()->back();
+	});
+	
+	Route::get('/articles/{article}/delete', function(App\Article $article)
+	{
+		$article->delete();
+		return redirect()->back();
 	});
 });
