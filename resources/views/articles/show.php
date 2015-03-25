@@ -1,3 +1,6 @@
 <?php extend('app') ?>
-			<h1><?= $article->title ?></h1>
-			<?= $article->text ?>
+			<header>
+				<h1><?= $article->title ?></h1>
+				<?= Markdown::string($article->tagline) ?>
+			</header>
+			<?= Markdown::string($article->text) ?>

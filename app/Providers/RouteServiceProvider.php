@@ -1,5 +1,7 @@
 <?php namespace App\Providers;
 
+use App\Article;
+use Route;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -26,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider {
 
 		Route::bind('article', function($value)
 		{
-			return App\Article::where('slug', $value)->first();
+			return Article::where('slug', $value)->first();
 		});
 	}
 

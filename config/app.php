@@ -146,6 +146,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		'Minit\ServiceProvider',
+		'Babel\ServiceProvider',
 	],
 
 	/*
@@ -195,6 +196,7 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
 		'Minit'     => 'Minit\Facade',
+		'Markdown'  => 'Babel\Facades\Markdown',
 	],
 
 ];

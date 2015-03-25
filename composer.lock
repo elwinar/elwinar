@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0cb12caa6f381b89138e097b80eee2cf",
+    "hash": "82376a2408cabb873e76ef5830216c47",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -221,6 +221,44 @@
                 "string"
             ],
             "time": "2014-12-20 21:24:13"
+        },
+        {
+            "name": "elwinar/babel",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elwinar/babel.git",
+                "reference": "a069eae3036292b00f2a6f93d3292eca65513c59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elwinar/babel/zipball/a069eae3036292b00f2a6f93d3292eca65513c59",
+                "reference": "a069eae3036292b00f2a6f93d3292eca65513c59",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.*",
+                "michelf/php-markdown": "~1.4",
+                "netcarver/textile": "~3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Babel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Public"
+            ],
+            "authors": [
+                {
+                    "name": "Romain Baugue",
+                    "email": "romain.baugue@elwinar.com"
+                }
+            ],
+            "description": "Markup languages engines for Laravel 5",
+            "time": "2015-03-25 09:16:05"
         },
         {
             "name": "elwinar/minit",
@@ -449,16 +487,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.17",
+            "version": "v5.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b4abcbc98885e1b339acc7e993d2758d47f01ecc"
+                "reference": "419d3f485ce7946cace4325ef19a30e1d5543951"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b4abcbc98885e1b339acc7e993d2758d47f01ecc",
-                "reference": "b4abcbc98885e1b339acc7e993d2758d47f01ecc",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/419d3f485ce7946cace4325ef19a30e1d5543951",
+                "reference": "419d3f485ce7946cace4325ef19a30e1d5543951",
                 "shasum": ""
             },
             "require": {
@@ -571,7 +609,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-03-17 21:45:31"
+            "time": "2015-03-24 13:36:37"
         },
         {
             "name": "league/flysystem",
@@ -655,6 +693,57 @@
                 "storage"
             ],
             "time": "2015-03-10 11:04:14"
+        },
+        {
+            "name": "michelf/php-markdown",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-markdown.git",
+                "reference": "e1aabe18173231ebcefc90e615565742fc1c7fd9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/e1aabe18173231ebcefc90e615565742fc1c7fd9",
+                "reference": "e1aabe18173231ebcefc90e615565742fc1c7fd9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-lib": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "John Gruber",
+                    "homepage": "http://daringfireball.net/"
+                },
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Markdown",
+            "homepage": "https://michelf.ca/projects/php-markdown/",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2015-03-01 12:03:08"
         },
         {
             "name": "monolog/monolog",
@@ -820,17 +909,70 @@
             "time": "2015-03-08 14:05:44"
         },
         {
-            "name": "nikic/php-parser",
-            "version": "v1.1.0",
+            "name": "netcarver/textile",
+            "version": "v3.5.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "ac05ef6f95bf8361549604b6031c115f92f39528"
+                "url": "https://github.com/textile/php-textile.git",
+                "reference": "1b95af533775316d09bd36a38bee2c0b804add12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ac05ef6f95bf8361549604b6031c115f92f39528",
-                "reference": "ac05ef6f95bf8361549604b6031c115f92f39528",
+                "url": "https://api.github.com/repos/textile/php-textile/zipball/1b95af533775316d09bd36a38bee2c0b804add12",
+                "reference": "1b95af533775316d09bd36a38bee2c0b804add12",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "satooshi/php-coveralls": "0.6.*",
+                "squizlabs/php_codesniffer": "1.5.*",
+                "symfony/yaml": "2.3.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Netcarver\\Textile": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Textile markup language parser",
+            "homepage": "https://github.com/textile/php-textile",
+            "keywords": [
+                "document",
+                "format",
+                "html",
+                "language",
+                "markup",
+                "parser",
+                "php-textile",
+                "plaintext",
+                "textile"
+            ],
+            "time": "2014-01-02 09:39:06"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "dba7524b3724f25b947cd26a580787c55c8a6f9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/dba7524b3724f25b947cd26a580787c55c8a6f9b",
+                "reference": "dba7524b3724f25b947cd26a580787c55c8a6f9b",
                 "shasum": ""
             },
             "require": {
@@ -840,7 +982,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -862,7 +1004,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-01-18 11:29:59"
+            "time": "2015-03-24 19:10:28"
         },
         {
             "name": "psr/log",
@@ -1793,7 +1935,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "elwinar/minit": 20
+        "elwinar/minit": 20,
+        "elwinar/babel": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
