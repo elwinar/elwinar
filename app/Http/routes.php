@@ -75,6 +75,19 @@ Route::group(['middleware' => 'auth'], function()
 		$article->save();
 		return redirect()->back();
 	});
+
+	Route::get('/article/{article}/edit', function(App\Article $article)
+	{
+		return view('articles.edit', [
+			'article' => $article,
+		]);
+	});
+
+	Route::post('/article/{article}/edit', function(App\Http\Requests\EditArticleRequest $request, App\Article $article)
+	{
+		$article->fill($request->all())->save();
+		return redirect('/article/'.$article->slug);
+	});
 	
 	Route::get('/article/{article}/delete', function(App\Article $article)
 	{
