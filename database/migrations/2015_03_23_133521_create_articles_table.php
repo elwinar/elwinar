@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration {
 			$table->string('tagline', 300);
 			$table->text('text');
 			$table->text('tags');
-			$table->boolean('is_published')->defaults(false);
+			$table->boolean('is_published')->default(false);
 			$table->timestamps();
 		});
 	}
@@ -32,7 +32,7 @@ class CreateArticlesTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('articles');
 	}
 
 }

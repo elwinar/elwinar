@@ -43,6 +43,9 @@ Route::get('/article/{article}', function(App\Article $article)
 {
 	return view('articles.show', [
 		'article' => $article,
+		'title' => $article->title,
+		'keywords' => $article->tags,
+		'description' => $article->tagline,
 	]);
 });
 
@@ -59,21 +62,21 @@ Route::group(['middleware' => 'auth'], function()
 		return redirect('/article/'.$article->slug);
 	});
 	
-	Route::get('/articles/{article}/publish', function(App\Article $article)
+	Route::get('/article/{article}/publish', function(App\Article $article)
 	{
 		$article->is_published = true;
 		$article->save();
 		return redirect()->back();
 	});
 	
-	Route::get('/articles/{article}/unpublish', function(App\Article $article)
+	Route::get('/article/{article}/unpublish', function(App\Article $article)
 	{
 		$article->is_published = false;
 		$article->save();
 		return redirect()->back();
 	});
 	
-	Route::get('/articles/{article}/delete', function(App\Article $article)
+	Route::get('/article/{article}/delete', function(App\Article $article)
 	{
 		$article->delete();
 		return redirect()->back();

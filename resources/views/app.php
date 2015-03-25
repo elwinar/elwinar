@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<base href="<?= Request::root(); ?>">
 <?php if(!empty($title)) { ?>
-		<title>Elwinar - <?= $title; ?></title>
+		<title><?= $title; ?> - Elwinar</title>
 <?php } else { ?>
 		<title>Elwinar</title>
 <?php } ?>
