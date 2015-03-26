@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder {
 		
 		App\User::create([
 			'email' => env('APP_EMAIL'),
-			'password' => Hash::make('dummy'),
+			'password' => Hash::make(env('APP_PASSWORD')),
 		]);
 	}
 
