@@ -4,7 +4,7 @@ Vagrant.configure(2) do |config|
 	
 	config.vm.network "forwarded_port", 
 			guest: 80, 
-			host: 42000,
+			host: 8080,
 			auto_correct: true
 	
 	config.vm.network "private_network",
