@@ -132,9 +132,13 @@ body {
 	}
 	
 	> footer {
-		.pull-right();
 		margin: @line-height-computed @u;
 		font-size: @font-size-large;
+		.pull-right();
+		
+		.phone({
+			display: none;
+		});
 		
 		> a {
 			color: inherit;
