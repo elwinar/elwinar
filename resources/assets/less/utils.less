@@ -1,0 +1,27 @@
+.desktop(@rules) {
+	@media (min-width: @screen-md-min) { 
+		@rules();
+	}
+}
+
+.tablet(@rules) {
+	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+		@rules();
+	}
+}
+
+.phone(@rules) {
+	@media (max-width: @screen-xs-max) { 
+		@rules();
+	}
+}
+
+.phone-and-tablet(@rules) {
+	.phone(@rules);
+	.tablet(@rules);
+}
+
+.tablet-and-desktop(@rules) {
+	.tablet(@rules);
+	.desktop(@rules);
+}

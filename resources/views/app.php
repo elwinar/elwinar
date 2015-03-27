@@ -22,10 +22,7 @@
 	</head>
 	<body>
 		<header>
-			<a href="/">
-				<h1>Elwinar</h1>
-				<p class="headline">Minimalist by design</p>
-			</a>
+			<h1><a href="/">Elwinar</a></h1>
 			<nav>
 				<ul>
 					<li><a href="//stackoverflow.com/users/3472656/elwinar">Ask</a></li>
@@ -34,6 +31,7 @@
 					<li><a href="articles">Read</a></li>
 				</ul>
 			</nav>
+			<p class="headline">Minimalist by design</p>
 		</header>
 		<section>
 			<?= $_view ?>

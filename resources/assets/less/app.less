@@ -1,5 +1,6 @@
 @import '../../../bower_components/bootstrap/less/bootstrap.less';
 @import '../../../bower_components/fontawesome/less/font-awesome.less';
+@import "utils.less";
 
 // Custom fonts
 @import "futura-light.less";
@@ -22,6 +23,8 @@
 @nav-link-padding-horizontal: 15px;
 @nav-link-padding-vertical: 10px;
 @nav-link-padding: @nav-link-padding-vertical @nav-link-padding-horizontal;
+
+@container-large-desktop: @container-desktop;
 
 // I DON'T like rounded borders!
 @border-radius-small: 0;
@@ -46,33 +49,42 @@ body {
 	> header {
 		.navbar();
 		
-		> a {
-			.navbar-header();
-			float: left;
+		> h1 {
+			font-size: @font-size-h1 * 1.5;
+			line-height: @font-size-h1 * 1.5;
+			margin-left: @u;
+			margin-right: @u;
 			
-			> h1 {
-				font-size: @font-size-h1 * 1.5;
-				line-height: @font-size-h1 * 1.5;
-				margin-left: @u;
-				margin-right: @u;
+			.tablet-and-desktop({
 				margin-bottom: 0;
-			}
+			});
+		}
+		
+		> p.headline {
+			color: @gray-dark;
+			font-size: @font-size-base * 1.4;
+			margin: 0 @u;
 			
-			> p.headline {
-				color: @gray-dark;
-				font-size: @font-size-base * 1.4;
-				margin: 0 @u;
-			}
+			.phone({
+				display: none;
+			});
 		}
 		
 		> nav {
 			font-size: @font-size-base * 1.4;
-			margin-top: @font-size-h1 * 1.5 + @line-height-computed - @nav-link-padding-vertical;
-			.pull-right();
+			margin-top: -@nav-link-padding-vertical;
+			
+			.tablet-and-desktop({
+				.pull-right();
+			});
 			
 			> ul {
 				.nav();
 				.nav-pills();
+			
+				.phone({
+					.nav-stacked();
+				});
 				
 				a {
 					color: inherit;
