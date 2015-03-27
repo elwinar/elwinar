@@ -1,5 +1,5 @@
 @import '../../../bower_components/bootstrap/less/bootstrap.less';
-@import "../../../bower_components/fontawesome/less/font-awesome.less";
+@import '../../../bower_components/fontawesome/less/font-awesome.less';
 
 // Custom fonts
 @import "futura-light.less";
@@ -53,20 +53,22 @@ body {
 			> h1 {
 				font-size: @font-size-h1 * 1.5;
 				line-height: @font-size-h1 * 1.5;
+				margin-left: @u;
+				margin-right: @u;
 				margin-bottom: 0;
 			}
 			
 			> p.headline {
 				color: @gray-dark;
 				font-size: @font-size-base * 1.4;
-				margin-bottom: 0;
+				margin: 0 @u;
 			}
 		}
 		
 		> nav {
-			.pull-right();
 			font-size: @font-size-base * 1.4;
 			margin-top: @font-size-h1 * 1.5 + @line-height-computed - @nav-link-padding-vertical;
+			.pull-right();
 			
 			> ul {
 				.nav();
@@ -84,6 +86,7 @@ body {
 	}
 	
 	> section {
+		margin: 0 @u;
 	
 		ul {
 			padding-left: 1em;
@@ -118,7 +121,7 @@ body {
 	
 	> footer {
 		.pull-right();
-		margin: @line-height-computed 0;
+		margin: @line-height-computed @u;
 		font-size: @font-size-large;
 		
 		> a {
