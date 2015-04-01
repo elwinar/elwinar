@@ -1,0 +1,12 @@
+{{ define "content" }}
+			<h1>Articles in ante-chronological order</h1>
+			<ul class="articles">
+{{ range . }}
+{{ if .Published }}
+				<li>
+					{{ .CreatedAt | dateFormat "2006.01.02" }} / <a href="/a/{{ .Slug }}" title="{{ .TagLine }}">{{ .Title }}</a>
+				</li>
+{{ end }}
+{{ end }}
+			</ul>
+{{ end }}
