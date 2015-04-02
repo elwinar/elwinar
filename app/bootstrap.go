@@ -7,6 +7,8 @@ import (
 )
 
 var db *sqlx.DB
+var PASSWORD string
+var VIEWS string
 
 func Bootstrap(context *cli.Context) error {
 	var err error
@@ -16,8 +18,8 @@ func Bootstrap(context *cli.Context) error {
 		return err
 	}
 	
-	BASE_URL = context.String("base")
-	println("starting with base url", BASE_URL)
+	PASSWORD = context.String("password")
+	VIEWS = context.String("views")
 	
 	return nil
 }

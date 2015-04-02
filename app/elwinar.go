@@ -16,21 +16,34 @@ func main() {
 	
 	app.Flags = []cli.Flag{
 		cli.IntFlag{
-			Name: "port,p",
-			Usage: "set the port to listen on",
+			Name: "port",
+			Value: 80,
+			Usage: "listening port",
 			EnvVar: "ELWINAR_PORT",
 		},
-		cli.IntFlag{
-			Name: "timeout,t",
-			Value: 1,
-			Usage: "timeout for graceful shutdown",
-			EnvVar: "ELWINAR_TIMEOUT",
+		cli.StringFlag{
+			Name: "database",
+			Value: "storage/database.sqlite",
+			Usage: "sqlite database file",
+			EnvVar: "ELWINAR_DATABASE",
 		},
 		cli.StringFlag{
-			Name: "base,u",
-			Value: "http://localhost:8080",
-			Usage: "base url of the website",
-			EnvVar: "ELWINAR_BASE_URL",
+			Name: "secret",
+			Value: "",
+			Usage: "encryption secret",
+			EnvVar: "ELWINAR_SECRET",
+		},
+		cli.StringFlag{
+			Name: "password",
+			Value: "",
+			Usage: "administrative password",
+			EnvVar: "ELWINAR_PASSWORD",
+		},
+		cli.StringFlag{
+			Name: "views",
+			Value: "resources/views",
+			Usage: "views repository",
+			EnvVar: "ELWINAR_VIEWS",
 		},
 	}
 	

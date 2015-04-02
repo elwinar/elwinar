@@ -1,0 +1,11 @@
+{{ define "view" }}
+			<h1>New article</h1>
+			<form method="POST">
+				<input type="text" id="title" name="title" placeholder="Title" required>
+				<input type="text" class="slug" data-target="#title" name="slug" placeholder="Slug" required>
+				<input type="text" name="tagline" placeholder="Tagline" required>
+				<textarea name="text" rows="10" placeholder="Text"></textarea>
+				<input type="text" name="tags" placeholder="Tags">
+				<input type="submit" value="Create">
+			</form>
+{{ end }}

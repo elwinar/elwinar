@@ -1,4 +1,4 @@
-{{ define "content" }}
+{{ define "view" }}
 			<h1>{{ .Title }} <small>{{ .CreatedAt | dateFormat "2006.01.02" }}</small></h1>
 			{{ .Text | markdown }}
 {{ end }}
