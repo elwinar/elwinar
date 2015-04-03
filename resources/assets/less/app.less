@@ -1,0 +1,153 @@
+@import '../../../bower_components/bootstrap/less/bootstrap.less';
+@import '../../../bower_components/fontawesome/less/font-awesome.less';
+@import "utils.less";
+
+// Custom fonts
+@import "futura-light.less";
+
+//** Customize the look and feel of the bootstrap components
+@brand-primary: #B4311C;
+@gray-darker: darken(@gray, 15%);
+@gray-dark: darken(@gray, 10%);
+@gray: #2C2C2C;
+@gray-light: lighten(@gray, 10%);
+@gray-lighter: lighten(@gray, 65%);
+
+@font-family-sans-serif: "Futura Light", Helvetica, Arial, sans-serif;
+@font-size-base: 16px;
+@line-height-base: 1.6;
+
+@text-color: @gray-light;
+@link-color: @brand-primary;
+@link-hover-color: darken(@link-color, 10%);
+
+@nav-link-padding-horizontal: 15px;
+@nav-link-padding-vertical: 10px;
+@nav-link-padding: @nav-link-padding-vertical @nav-link-padding-horizontal;
+
+@container-large-desktop: @container-desktop;
+
+// I DON'T like rounded borders!
+@border-radius-small: 0;
+@border-radius-base: 0;
+@border-radius-large: 0;
+
+// Here is a custom unit to use
+@u: @grid-gutter-width / 2;
+
+
+
+//** Here be dragons!
+
+a:hover {
+	text-decoration: none;
+}
+
+body {
+	.container();
+	padding: 1em auto;
+	
+	> header {
+		.navbar();
+		
+		> h1 {
+			font-size: @font-size-h1 * 1.5;
+			line-height: @font-size-h1 * 1.5;
+			margin-left: @u;
+			margin-right: @u;
+			
+			.tablet-and-desktop({
+				margin-bottom: 0;
+			});
+		}
+		
+		> p.headline {
+			color: @gray-dark;
+			font-size: @font-size-base * 1.4;
+			margin: 0 @u;
+			
+			.phone({
+				display: none;
+			});
+		}
+		
+		> nav {
+			font-size: @font-size-base * 1.4;
+			margin-top: -@nav-link-padding-vertical;
+			
+			.tablet-and-desktop({
+				.pull-right();
+			});
+			
+			> ul {
+				.nav();
+				.nav-pills();
+			
+				.phone({
+					.nav-stacked();
+				});
+				
+				a {
+					color: inherit;
+					
+					&:hover {
+						color: inherit;
+					}
+				}
+			}
+		}
+	}
+	
+	> section {
+		margin: 0 @u;
+	
+		ul {
+			padding-left: 1em;
+			
+			&.errors {
+				.text-danger();
+			}
+		}
+		
+		header {
+			p {
+				.lead();
+			}
+		}
+		
+		form {
+			margin-bottom: @line-height-computed;
+			
+			input,
+			textarea {
+				.form-control();
+				.input-sm();
+				margin-top: @line-height-computed;
+			}
+			
+			textarea {
+				height: 10em;
+				resize:vertical;
+			}
+		}
+	}
+	
+	> footer {
+		margin: @line-height-computed @u;
+		font-size: @font-size-large;
+		.pull-right();
+		
+		.phone({
+			display: none;
+		});
+		
+		> a {
+			color: inherit;
+			
+			span.fa-html5 {
+				color: @brand-primary;
+				font-size: 1.2em;
+			}
+		}
+	}
+}

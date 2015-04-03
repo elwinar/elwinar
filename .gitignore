@@ -1,7 +1,7 @@
-vendor/
-app/config/local/
-bower_components/
-node_modules/
-public/*.js
-public/*.css
-app/database/production.sqlite
+vendor
+node_modules
+bower_components
+storage
+public
+.env
+.vagrant

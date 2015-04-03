@@ -1,0 +1,26 @@
+{{ define "view" }}
+			<h1>Articles in ante-chronological order</h1>
+	{{ if Logged }}
+			<p><a href="/write">New</a></p>
+	{{ end }}
+			<ul class="articles">
+	{{ range . }}
+		{{ if or Logged .IsPublished }}
+				<li>
+					{{ .CreatedAt | DateFormat "2006.01.02" }} / <a href="/article/{{ .Slug }}" title="{{ .Tagline }}">{{ .Title }}</a>
+			{{ if Logged }}
+					<nav>
+				{{ if .IsPublished }}
+						<a href="/article/{{ .Slug }}/unpublish" title="unpublish"><span class="fa fa-eye-slash"></span></a>
+				{{ else }}
+						<a href="/article/{{ .Slug }}/publish" title="publish"><span class="fa fa-eye"></span></a>
+				{{ end }}
+						<a href="/article/{{ .Slug }}/edit" title="edit"><span class="fa fa-pencil"></span></a>
+						<a href="/article/{{ .Slug }}/delete" title="delete"><span class="fa fa-trash-o"></span></a>
+					</nav>
+			{{ end }}
+				</li>
+		{{ end }}
+	{{ end }}
+			</ul>
+{{ end }}
