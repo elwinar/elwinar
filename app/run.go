@@ -7,6 +7,7 @@ import (
 	"github.com/goincremental/negroni-sessions"
 	"github.com/goincremental/negroni-sessions/cookiestore"
 	"github.com/julienschmidt/httprouter"
+    "github.com/phyber/negroni-gzip/gzip"
 	"github.com/stretchr/graceful"
 	"log"
 	"net/http"
@@ -37,6 +38,7 @@ func run(port int, secret string) error {
 	r.POST("/write", Auth(WriteFormHandler))
 
 	n := negroni.New()
+	n.Use(gzip.Gzip(gzip.DefaultCompression))
 	n.Use(negroni.NewRecovery())
 	n.Use(negroni.NewStatic(http.Dir("public")))
 	n.Use(sessions.Sessions("elwinar", cookiestore.New([]byte(secret))))
