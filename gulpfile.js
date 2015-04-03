@@ -6,13 +6,14 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
+var uncss = require('gulp-uncss');
 
 gulp.task('styles', function() {
 	gulp.src('styles/app.less')
 		.pipe(plumber())
-	    .pipe(concat('app.less'))
 	    .pipe(less())
 		.pipe(rename({extname: '.css'}))
+		.pipe(uncss({html: ['views/*.html']}))
 		.pipe(autoprefixer())
 		.pipe(minify())
 		.pipe(gulp.dest('public/'));
@@ -42,8 +43,9 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('watch', function () {
-	gulp.watch('styles/*.less', ['styles']);
 	gulp.watch('scripts/*.js', ['scripts']);
+	gulp.watch('styles/*.less', ['styles']);
+	gulp.watch('views/*.html', ['styles']);
 });
 
 gulp.task('default', ['styles', 'fonts', 'scripts']);
