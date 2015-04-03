@@ -18,6 +18,6 @@ Vagrant.configure(2) do |config|
 	config.vm.provision "shell", inline: <<EOS
 		pacman -Suyy --noconfirm
 		pacman -S --noconfirm nodejs
-		npm install -g bower
+		npm install -g bower gulp
 EOS
 end
