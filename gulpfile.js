@@ -8,7 +8,7 @@ var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 
 gulp.task('styles', function() {
-	gulp.src('resources/assets/less/app.less')
+	gulp.src('styles/app.less')
 		.pipe(plumber())
 	    .pipe(concat('app.less'))
 	    .pipe(less())
@@ -22,7 +22,7 @@ gulp.task('fonts', function() {
 	gulp.src([
 		'bower_components/bootstrap/fonts/*',
 		'bower_components/fontawesome/fonts/*',
-		'resources/assets/fonts/*',
+		'fonts/*',
 	])
 		.pipe(gulp.dest('public/fonts/'));
 });
@@ -32,7 +32,7 @@ gulp.task('scripts', function () {
 		'bower_components/jquery/dist/jquery.js',
 		'bower_components/bootstrap/dist/js/bootstrap.js',
 		'bower_components/speakingurl/speakingurl.min.js',
-		'resources/assets/js/*.js',
+		'scripts/*.js',
 	])
 	.pipe(plumber())
 	.pipe(concat('app.js'))
@@ -42,8 +42,8 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('watch', function () {
-	gulp.watch('resources/assets/less/*.less', ['styles']);
-	gulp.watch('resources/assets/js/*.js', ['scripts']);
+	gulp.watch('styles/*.less', ['styles']);
+	gulp.watch('scripts/*.js', ['scripts']);
 });
 
 gulp.task('default', ['styles', 'fonts', 'scripts']);
