@@ -13,40 +13,40 @@ func main() {
 	app.Version = "4go-dev"
 	app.Author = "Romain Baugue"
 	app.Email = "romain.baugue@elwinar.com"
-	
+
 	app.Flags = []cli.Flag{
 		cli.IntFlag{
-			Name: "port",
-			Value: 80,
-			Usage: "listening port",
+			Name:   "port",
+			Value:  80,
+			Usage:  "listening port",
 			EnvVar: "ELWINAR_PORT",
 		},
 		cli.StringFlag{
-			Name: "database",
-			Value: "storage/database.sqlite",
-			Usage: "sqlite database file",
+			Name:   "database",
+			Value:  "storage/database.sqlite",
+			Usage:  "sqlite database file",
 			EnvVar: "ELWINAR_DATABASE",
 		},
 		cli.StringFlag{
-			Name: "secret",
-			Value: "",
-			Usage: "encryption secret",
+			Name:   "secret",
+			Value:  "",
+			Usage:  "encryption secret",
 			EnvVar: "ELWINAR_SECRET",
 		},
 		cli.StringFlag{
-			Name: "password",
-			Value: "",
-			Usage: "administrative password",
+			Name:   "password",
+			Value:  "",
+			Usage:  "administrative password",
 			EnvVar: "ELWINAR_PASSWORD",
 		},
 		cli.StringFlag{
-			Name: "views",
-			Value: "resources/views",
-			Usage: "views repository",
+			Name:   "views",
+			Value:  "resources/views",
+			Usage:  "views repository",
 			EnvVar: "ELWINAR_VIEWS",
 		},
 	}
-	
+
 	app.Before = Bootstrap
 	app.Action = Run
 

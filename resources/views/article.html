@@ -1,4 +1,5 @@
 {{ define "view" }}
-			<h1>{{ .Title }} <small>{{ .CreatedAt | dateFormat "2006.01.02" }}</small></h1>
-			{{ .Text | markdown }}
+			<h1>{{ .Title }}</h1>
+			<p class="lead">{{ .CreatedAt | DateFormat "2006.01.02" }}</p>
+			{{ .Text | Markdown }}
 {{ end }}
