@@ -13,7 +13,7 @@ var VIEWS string
 func Bootstrap(context *cli.Context) error {
 	var err error
 
-	db, err = sqlx.Connect("sqlite3", "storage/database.sqlite")
+	db, err = sqlx.Connect("sqlite3", context.String("database"))
 	if err != nil {
 		return err
 	}
