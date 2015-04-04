@@ -10,7 +10,7 @@ case "$1" in
 	;;
 
 	start)
-		./elwinar --port=$PORT --database=$DATABASE --secret=$SECRET --password=$PASSWORD --views=$VIEWS --base=$BASE 2>&1 elwinar.log &
+		./elwinar --port=$PORT --database=$DATABASE --secret=$SECRET --password=$PASSWORD --views=$VIEWS --base=$BASE > elwinar.log 2>&1 &
 	;;
 
 	stop)
