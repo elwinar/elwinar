@@ -18,6 +18,32 @@ func init() {
 	gob.Register(&url.Values{})
 }
 
+func AgeHelper(birthdate string) (string, error) {
+	var birth, err = time.Parse("2006-01-02", birthdate)
+	if err != nil {
+		return "", err
+	}
+
+	var now = time.Now().UTC()
+	if now.YearDay() < birth.YearDay() {
+		return strconv.Itoa(now.Year() - birth.Year() - 1), nil
+	}
+
+	return strconv.Itoa(now.Year() - birth.Year()), nil
+}
+
+func DateFormatHelper(format string, date time.Time) string {
+	return date.Format(format)
+}
+
+func EnvHelper(name string) string {
+	return os.Getenv(name)
+}
+
+func MarkdownHelper(text string) template.HTML {
+	return template.HTML(blackfriday.MarkdownCommon([]byte(text)))
+}
+
 func render(w http.ResponseWriter, r *http.Request, name string, data interface{}) {
 	var rawErrs = sessions.GetSession(r).Flashes("_errors")
 	var errs []string
@@ -32,40 +58,22 @@ func render(w http.ResponseWriter, r *http.Request, name string, data interface{
 	}
 	
 	t, err := template.New(name).Funcs(template.FuncMap{
-		"Age": func(birthdate string) (string, error) {
-			var birth, err = time.Parse("2006-01-02", birthdate)
-			if err != nil {
-				return "", err
-			}
-
-			var now = time.Now().UTC()
-			if now.YearDay() < birth.YearDay() {
-				return strconv.Itoa(now.Year() - birth.Year() - 1), nil
-			}
-
-			return strconv.Itoa(now.Year() - birth.Year()), nil
-		},
+		"Age": AgeHelper,
 		"Base": func() string {
 			return fmt.Sprintf("http://%s", r.Host)
 		},
-		"DateFormat": func(format string, date time.Time) string {
-			return date.Format(format)
-		},
+		"DateFormat": DateFormatHelper,
 		"Errors": func() []string {
 			return errs
 		},
-		"Env": func(name string) string {
-			return os.Getenv(name)
-		},
+		"Env": EnvHelper,
 		"Input": func() *url.Values {
 			return inputs
 		},
 		"Logged": func() interface{} {
 			return sessions.GetSession(r).Get("logged")
 		},
-		"Markdown": func(text string) template.HTML {
-			return template.HTML(blackfriday.MarkdownCommon([]byte(text)))
-		},
+		"Markdown": MarkdownHelper,
 		"Session": func(name string) interface{} {
 			return sessions.GetSession(r).Get(name)
 		},
