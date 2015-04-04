@@ -10,5 +10,5 @@ CREATE TABLE articles (
 	is_published boolean,
 	created_at datetime not null,
 	updated_at datetime not null,
-	published_at datetime
+	published_at datetime not null
 );
