@@ -1,0 +1,30 @@
+#! /bin/bash
+
+PORT=80
+DATABASE=elwinar.sqlite
+SECRET=RandomSecretKey
+PASSWORD="el'spswdmk02"
+VIEWS=views/
+BASE=http://127.0.0.1:8080
+
+case "$1" in
+
+	start)
+		./elwinar --port=$PORT --database=$DATABASE --secret=$SECRET --password=$PASSWORD --views=$VIEWS --base=$BASE 2>&1 elwinar.log &
+	;;
+
+	stop)
+		kill -SIGINT `pidof elwinar`
+	;;
+
+	restart)
+		d_stop
+		d_start
+	;;
+
+	status)
+		status_of_proc "$daemon_NAME" "$DAEMON" "system-wide $daemon_NAME" && exit 0 || exit $?
+	;;
+
+esac
+exit 0
