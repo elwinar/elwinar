@@ -15,7 +15,7 @@ type Article struct {
 	IsPublished bool      `db:"is_published"`
 	CreatedAt   time.Time `db:"created_at"`
 	UpdatedAt   time.Time `db:"updated_at"`
-	PublishedAt *time.Time `db:"published_at"`
+	PublishedAt time.Time `db:"published_at"`
 }
 
 func FindArticle(slug string) (*Article) {
@@ -36,7 +36,7 @@ func FindArticle(slug string) (*Article) {
 func AllArticles() ([]*Article) {
 	var articles []*Article
 
-	err := db.Select(&articles, "SELECT id, title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at FROM articles ORDER BY created_at DESC")
+	err := db.Select(&articles, "SELECT id, title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at FROM articles ORDER BY published_at DESC")
 	if err != nil {
 		panic(err)
 	}

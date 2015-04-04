@@ -180,7 +180,7 @@ func WriteFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Param
 		return
 	}
 
-	_, err := db.Exec("INSERT INTO articles (title, slug, tagline, text, tags, created_at, updated_at, is_published) VALUES (?, ?, ?, ?, ?, datetime('now'), datetime('now'), ?)", r.FormValue("title"), r.FormValue("slug"), r.FormValue("tagline"), r.FormValue("text"), r.FormValue("tags"), false)
+	_, err := db.Exec("INSERT INTO articles (title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at) VALUES (?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'), datetime('now'))", r.FormValue("title"), r.FormValue("slug"), r.FormValue("tagline"), r.FormValue("text"), r.FormValue("tags"), false)
 	if err != nil {
 		panic(err)
 	}
