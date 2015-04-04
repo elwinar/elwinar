@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/gob"
-	"fmt"
 	"github.com/goincremental/negroni-sessions"
 	"github.com/russross/blackfriday"
 	"html/template"
@@ -32,6 +31,10 @@ func AgeHelper(birthdate string) (string, error) {
 	return strconv.Itoa(now.Year() - birth.Year()), nil
 }
 
+func BaseHelper() string {
+	return BASE
+}
+
 func DateFormatHelper(format string, date time.Time) string {
 	return date.Format(format)
 }
@@ -59,9 +62,7 @@ func render(w http.ResponseWriter, r *http.Request, name string, data interface{
 	
 	t, err := template.New(name).Funcs(template.FuncMap{
 		"Age": AgeHelper,
-		"Base": func() string {
-			return fmt.Sprintf("http://%s", r.Host)
-		},
+		"Base": BaseHelper,
 		"DateFormat": DateFormatHelper,
 		"Errors": func() []string {
 			return errs

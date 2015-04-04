@@ -134,18 +134,18 @@ func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 	var urlset sitemap.URLSet
 	urlset.URLs = []sitemap.URL{
 		{
-			Loc: fmt.Sprintf("http://%s/", r.Host),
+			Loc: fmt.Sprintf("%s/", BASE),
 			ChangeFreq: sitemap.Yearly,
 		},
 		{
-			Loc: fmt.Sprintf("http://%s/read", r.Host),
+			Loc: fmt.Sprintf("%s/read", BASE),
 			ChangeFreq: sitemap.Weekly,
 		},
 	}
 	
 	for _, a := range articles {
 		urlset.URLs = append(urlset.URLs, sitemap.URL{
-			Loc: fmt.Sprintf("http://%s/article/%s", r.Host, a.Slug),
+			Loc: fmt.Sprintf("%s/article/%s", BASE, a.Slug),
 			LastMod: &a.UpdatedAt,
 			ChangeFreq: sitemap.Monthly,
 		})

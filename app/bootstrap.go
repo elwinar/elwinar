@@ -9,6 +9,7 @@ import (
 var db *sqlx.DB
 var PASSWORD string
 var VIEWS string
+var BASE string
 
 func Bootstrap(context *cli.Context) error {
 	var err error
@@ -20,6 +21,7 @@ func Bootstrap(context *cli.Context) error {
 
 	PASSWORD = context.String("password")
 	VIEWS = context.String("views")
+	BASE = context.String("base")
 
 	return nil
 }

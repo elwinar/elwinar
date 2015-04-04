@@ -21,6 +21,11 @@ func main() {
 			EnvVar: "ELWINAR_PORT",
 		},
 		cli.StringFlag{
+			Name:   "base",
+			Usage:  "base url",
+			EnvVar: "ELWINAR_BASE",
+		},
+		cli.StringFlag{
 			Name:   "database",
 			Usage:  "sqlite database file",
 			EnvVar: "ELWINAR_DATABASE",
