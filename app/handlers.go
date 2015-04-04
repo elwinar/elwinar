@@ -105,31 +105,21 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 }
 
 func PublishArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	_, err := db.Exec("UPDATE articles SET is_published = ? WHERE slug = ?", true, p.ByName("slug"))
+	_, err := db.Exec("UPDATE articles SET is_published = ?, published_at = datetime('now') WHERE slug = ?", true, p.ByName("slug"))
 	if err != nil {
 		panic(err)
 	}
 	
-	http.Redirect(w, r, "/read", http.StatusFound)
+	http.Redirect(w, r, r.Referer(), http.StatusFound)
 }
 
 func ReadHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	var articles []Article
-
-	err := db.Select(&articles, "SELECT * FROM articles ORDER BY created_at DESC")
-	if err != nil {
-		panic(err)
-	}
-
+	articles := AllArticles()
 	render(w, r, "read", articles)
 }
 
 func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	var articles []Article
-	err := db.Select(&articles, "SELECT * FROM articles WHERE is_published = ? ORDER BY updated_at DESC", true)
-	if err != nil {
-		panic(err)
-	}
+	articles := PublishedArticles()
 	
 	var urlset sitemap.URLSet
 	urlset.URLs = []sitemap.URL{
@@ -165,7 +155,7 @@ func UnpublishArticleHandler(w http.ResponseWriter, r *http.Request, p httproute
 		panic(err)
 	}
 	
-	http.Redirect(w, r, "/read", http.StatusFound)
+	http.Redirect(w, r, r.Referer(), http.StatusFound)
 }
 
 func WriteHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {

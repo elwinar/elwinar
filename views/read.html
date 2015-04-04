@@ -7,7 +7,7 @@
 	{{ range . }}
 		{{ if or Logged .IsPublished }}
 				<li>
-					{{ .CreatedAt | DateFormat "2006.01.02" }} / <a href="/article/{{ .Slug }}" title="{{ .Tagline }}">{{ .Title }}</a>
+					{{ .PublishedAt | DateFormat "2006.01.02" }} / <a href="/article/{{ .Slug }}" title="{{ .Tagline }}">{{ .Title }}</a>
 			{{ if Logged }}
 					<nav>
 				{{ if .IsPublished }}

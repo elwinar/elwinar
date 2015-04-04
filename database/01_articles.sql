@@ -7,7 +7,8 @@ CREATE TABLE articles (
 	tagline varchar(450) not null,
 	text text not null,
 	tags text not null,
+	is_published boolean,
 	created_at datetime not null,
 	updated_at datetime not null,
-	is_published boolean
+	published_at datetime
 );
