@@ -3,7 +3,7 @@ Vagrant.configure(2) do |config|
 	config.vm.hostname = "elwinar"
 	
 	config.vm.network "forwarded_port", 
-			guest: 80, 
+			guest: 8080, 
 			host: 8080,
 			auto_correct: true
 	
@@ -17,7 +17,7 @@ Vagrant.configure(2) do |config|
 	
 	config.vm.provision "shell", inline: <<EOS
 		pacman -Suyy --noconfirm
-		pacman -S --noconfirm nodejs
+		pacman -S --noconfirm nodejs tmux most
 		npm install -g bower gulp
 EOS
 end
