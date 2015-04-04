@@ -2,8 +2,10 @@ package main
 
 import (
 	"crypto/subtle"
+	"fmt"
 	"github.com/goincremental/negroni-sessions"
 	"github.com/julienschmidt/httprouter"
+	"github.com/sourcegraph/sitemap"
 	"net/http"
 )
 
@@ -120,6 +122,41 @@ func ReadHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 
 	render(w, r, "read", articles)
+}
+
+func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	var articles []Article
+	err := db.Select(&articles, "SELECT * FROM articles WHERE is_published = ? ORDER BY updated_at DESC", true)
+	if err != nil {
+		panic(err)
+	}
+	
+	var urlset sitemap.URLSet
+	urlset.URLs = []sitemap.URL{
+		{
+			Loc: fmt.Sprintf("http://%s/", r.Host),
+			ChangeFreq: sitemap.Yearly,
+		},
+		{
+			Loc: fmt.Sprintf("http://%s/read", r.Host),
+			ChangeFreq: sitemap.Weekly,
+		},
+	}
+	
+	for _, a := range articles {
+		urlset.URLs = append(urlset.URLs, sitemap.URL{
+			Loc: fmt.Sprintf("http://%s/article/%s", r.Host, a.Slug),
+			LastMod: &a.UpdatedAt,
+			ChangeFreq: sitemap.Monthly,
+		})
+	}
+	
+	raw, err := sitemap.Marshal(&urlset)
+	if err != nil {
+		panic(err)
+	}
+	
+	w.Write(raw)
 }
 
 func UnpublishArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {

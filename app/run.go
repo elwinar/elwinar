@@ -34,6 +34,7 @@ func run(port int, secret string) error {
 	r.GET("/login", LoginHandler)
 	r.POST("/login", LoginFormHandler)
 	r.GET("/logout", LogoutHandler)
+	r.GET("/sitemap.xml", SitemapHandler)
 	r.GET("/write", Auth(WriteHandler))
 	r.POST("/write", Auth(WriteFormHandler))
 
