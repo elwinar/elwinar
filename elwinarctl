@@ -6,6 +6,9 @@ case "$1" in
 
 	build)
 		go build -o elwinar ./app
+	;;
+
+	build-assets)
 		gulp
 	;;
 
