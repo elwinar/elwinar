@@ -10,13 +10,16 @@ var uncss = require('gulp-uncss');
 
 gulp.task('styles', function() {
 	gulp.src('styles/app.less')
-		.pipe(plumber())
-	    .pipe(less())
-		.pipe(rename({extname: '.css'}))
-		.pipe(uncss({html: ['views/*.html']}))
-		.pipe(autoprefixer())
-		.pipe(minify())
-		.pipe(gulp.dest('public/'));
+	.pipe(plumber())
+	.pipe(less())
+	.pipe(rename({extname: '.css'}))
+	.pipe(uncss({html: ['views/*.html']}))
+	.pipe(gulp.src([
+		'bower_components/prism/themes/prism.css',
+	]))
+	.pipe(autoprefixer())
+	.pipe(minify())
+	.pipe(gulp.dest('public/'));
 });
 
 gulp.task('fonts', function() {
@@ -25,7 +28,7 @@ gulp.task('fonts', function() {
 		'bower_components/fontawesome/fonts/*',
 		'fonts/*',
 	])
-		.pipe(gulp.dest('public/fonts/'));
+	.pipe(gulp.dest('public/fonts/'));
 });
 
 gulp.task('scripts', function () {
@@ -33,6 +36,8 @@ gulp.task('scripts', function () {
 		'bower_components/jquery/dist/jquery.js',
 		'bower_components/bootstrap/dist/js/bootstrap.js',
 		'bower_components/speakingurl/speakingurl.min.js',
+		'bower_components/prism/prism.js',
+		'bower_components/prism/components/*.min.js',
 		'scripts/*.js',
 	])
 	.pipe(plumber())
