@@ -10,6 +10,7 @@ var db *sqlx.DB
 var PASSWORD string
 var VIEWS string
 var BASE string
+var GOOGLE_ANALYTICS_ID string
 
 func Bootstrap(context *cli.Context) error {
 	var err error
@@ -22,6 +23,7 @@ func Bootstrap(context *cli.Context) error {
 	PASSWORD = context.String("password")
 	VIEWS = context.String("views")
 	BASE = context.String("base")
+	GOOGLE_ANALYTICS_ID = context.String("google-analytics-id")
 
 	return nil
 }

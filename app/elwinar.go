@@ -45,6 +45,11 @@ func main() {
 			Usage:  "views repository",
 			EnvVar: "ELWINAR_VIEWS",
 		},
+		cli.StringFlag{
+			Name:   "google-analytics-id",
+			Usage:  "google analytics tracking id",
+			EnvVar: "ELWINAR_GOOGLE_ANALYTICS_ID",
+		},
 	}
 
 	app.Before = Bootstrap

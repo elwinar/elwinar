@@ -47,6 +47,10 @@ func MarkdownHelper(text string) template.HTML {
 	return template.HTML(blackfriday.MarkdownCommon([]byte(text)))
 }
 
+func GoogleAnalyticsIDHelper() string {
+	return GOOGLE_ANALYTICS_ID
+}
+
 func render(w http.ResponseWriter, r *http.Request, name string, data interface{}) {
 	var rawErrs = sessions.GetSession(r).Flashes("_errors")
 	var errs []string
@@ -68,6 +72,7 @@ func render(w http.ResponseWriter, r *http.Request, name string, data interface{
 			return errs
 		},
 		"Env": EnvHelper,
+		"GoogleAnalyticsID": GoogleAnalyticsIDHelper,
 		"Input": func() *url.Values {
 			return inputs
 		},
