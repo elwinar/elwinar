@@ -57,21 +57,21 @@ func render(w http.ResponseWriter, r *http.Request, name string, data interface{
 	if len(rawErrs) != 0 {
 		errs = rawErrs[0].([]string)
 	}
-	
+
 	var rawInputs = sessions.GetSession(r).Flashes("_inputs")
 	var inputs = new(url.Values)
 	if len(rawInputs) != 0 {
 		inputs = rawInputs[0].(*url.Values)
 	}
-	
+
 	t, err := template.New(name).Funcs(template.FuncMap{
-		"Age": AgeHelper,
-		"Base": BaseHelper,
+		"Age":        AgeHelper,
+		"Base":       BaseHelper,
 		"DateFormat": DateFormatHelper,
 		"Errors": func() []string {
 			return errs
 		},
-		"Env": EnvHelper,
+		"Env":               EnvHelper,
 		"GoogleAnalyticsID": GoogleAnalyticsIDHelper,
 		"Input": func() *url.Values {
 			return inputs

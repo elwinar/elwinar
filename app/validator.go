@@ -8,7 +8,7 @@ import (
 
 type Validator struct {
 	Errs []error
-	r *http.Request
+	r    *http.Request
 }
 
 func NewValidator(r *http.Request) *Validator {
@@ -48,17 +48,17 @@ func (v *Validator) DoesntExists(field, table, column string, allowed ...string)
 			return
 		}
 	}
-	
+
 	err := db.Get(new(int), "SELECT id FROM `"+table+"` WHERE `"+column+"` = ?", v.r.FormValue(field))
-		
+
 	if err == sql.ErrNoRows {
 		return
 	}
-	
+
 	if err != nil {
 		panic(err)
 	}
-	
+
 	v.Errs = append(v.Errs, fmt.Errorf("%s already exists", field))
 }
 

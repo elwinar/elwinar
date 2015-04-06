@@ -7,7 +7,7 @@ import (
 	"github.com/goincremental/negroni-sessions"
 	"github.com/goincremental/negroni-sessions/cookiestore"
 	"github.com/julienschmidt/httprouter"
-    "github.com/phyber/negroni-gzip/gzip"
+	"github.com/phyber/negroni-gzip/gzip"
 	"github.com/stretchr/graceful"
 	"log"
 	"net/http"

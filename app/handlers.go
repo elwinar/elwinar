@@ -40,7 +40,7 @@ func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter
 		http.Error(w, "Page not found", http.StatusNotFound)
 		return
 	}
-	
+
 	var v = NewValidator(r)
 	v.NotEmpty("title")
 	v.MaxLen("title", 150)
@@ -50,7 +50,7 @@ func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter
 	v.NotEmpty("tagline")
 	v.MaxLen("tagline", 450)
 	v.NotEmpty("text")
-	
+
 	if v.HasErrors() {
 		sessions.GetSession(r).AddFlash(v.Errors(), "_errors")
 		sessions.GetSession(r).AddFlash(r.Form, "_inputs")
@@ -62,7 +62,7 @@ func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter
 	if err != nil {
 		panic(err)
 	}
-	
+
 	http.Redirect(w, r, "/article/"+r.FormValue("slug"), http.StatusFound)
 	return
 }
@@ -72,7 +72,7 @@ func DeleteArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.P
 	if err != nil {
 		panic(err)
 	}
-	
+
 	http.Redirect(w, r, "/read", http.StatusFound)
 }
 
@@ -109,7 +109,7 @@ func PublishArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.
 	if err != nil {
 		panic(err)
 	}
-	
+
 	http.Redirect(w, r, r.Referer(), http.StatusFound)
 }
 
@@ -120,32 +120,32 @@ func ReadHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	articles := PublishedArticles()
-	
+
 	var urlset sitemap.URLSet
 	urlset.URLs = []sitemap.URL{
 		{
-			Loc: fmt.Sprintf("%s/", BASE),
+			Loc:        fmt.Sprintf("%s/", BASE),
 			ChangeFreq: sitemap.Yearly,
 		},
 		{
-			Loc: fmt.Sprintf("%s/read", BASE),
+			Loc:        fmt.Sprintf("%s/read", BASE),
 			ChangeFreq: sitemap.Weekly,
 		},
 	}
-	
+
 	for _, a := range articles {
 		urlset.URLs = append(urlset.URLs, sitemap.URL{
-			Loc: fmt.Sprintf("%s/article/%s", BASE, a.Slug),
-			LastMod: &a.UpdatedAt,
+			Loc:        fmt.Sprintf("%s/article/%s", BASE, a.Slug),
+			LastMod:    &a.UpdatedAt,
 			ChangeFreq: sitemap.Monthly,
 		})
 	}
-	
+
 	raw, err := sitemap.Marshal(&urlset)
 	if err != nil {
 		panic(err)
 	}
-	
+
 	w.Write(raw)
 }
 
@@ -154,7 +154,7 @@ func UnpublishArticleHandler(w http.ResponseWriter, r *http.Request, p httproute
 	if err != nil {
 		panic(err)
 	}
-	
+
 	http.Redirect(w, r, r.Referer(), http.StatusFound)
 }
 
@@ -172,7 +172,7 @@ func WriteFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Param
 	v.NotEmpty("tagline")
 	v.MaxLen("tagline", 450)
 	v.NotEmpty("text")
-	
+
 	if v.HasErrors() {
 		sessions.GetSession(r).AddFlash(v.Errors(), "_errors")
 		sessions.GetSession(r).AddFlash(r.Form, "_inputs")
@@ -184,7 +184,7 @@ func WriteFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Param
 	if err != nil {
 		panic(err)
 	}
-	
+
 	http.Redirect(w, r, "/article/"+r.FormValue("slug"), http.StatusFound)
 	return
 }
