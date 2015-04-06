@@ -9,14 +9,15 @@ var plumber = require('gulp-plumber');
 var uncss = require('gulp-uncss');
 
 gulp.task('styles', function() {
-	gulp.src('styles/app.less')
+	gulp.src([
+		'styles/app.less',
+		'bower_components/prism/themes/prism.css',
+	])
 	.pipe(plumber())
+	.pipe(concat('app.less'))
 	.pipe(less())
 	.pipe(rename({extname: '.css'}))
 	.pipe(uncss({html: ['views/*.html']}))
-	.pipe(gulp.src([
-		'bower_components/prism/themes/prism.css',
-	]))
 	.pipe(autoprefixer())
 	.pipe(minify())
 	.pipe(gulp.dest('public/'));
@@ -37,7 +38,14 @@ gulp.task('scripts', function () {
 		'bower_components/bootstrap/dist/js/bootstrap.js',
 		'bower_components/speakingurl/speakingurl.min.js',
 		'bower_components/prism/prism.js',
-		'bower_components/prism/components/*.min.js',
+		'bower_components/prism/components/prism-bash.js',
+		'bower_components/prism/components/prism-c.js',
+		'bower_components/prism/components/prism-css.js',
+		'bower_components/prism/components/prism-go.js',
+		'bower_components/prism/components/prism-html.js',
+		'bower_components/prism/components/prism-javascript.js',
+		'bower_components/prism/components/prism-json.js',
+		'bower_components/prism/components/prism-ruby.js',
 		'scripts/*.js',
 	])
 	.pipe(plumber())
