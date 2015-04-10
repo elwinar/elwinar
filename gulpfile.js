@@ -38,6 +38,7 @@ gulp.task('scripts', function () {
 		'bower_components/bootstrap/dist/js/bootstrap.js',
 		'bower_components/speakingurl/speakingurl.min.js',
 		'bower_components/prism/components/prism-core.js',
+		'bower_components/prism/components/prism-clike.js',
 		'bower_components/prism/components/prism-javascript.js',
 		'bower_components/prism/components/prism-markup.js',
 		'bower_components/prism/components/prism-php.js',
