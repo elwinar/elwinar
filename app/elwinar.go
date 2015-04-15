@@ -10,7 +10,7 @@ func main() {
 	var app = cli.NewApp()
 
 	app.Name = "elwinar"
-	app.Version = "4go-dev"
+	app.Version = "4"
 	app.Author = "Romain Baugue"
 	app.Email = "romain.baugue@elwinar.com"
 
