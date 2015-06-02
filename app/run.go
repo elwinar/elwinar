@@ -31,6 +31,7 @@ func run(port int, secret string, public string) error {
 	r.GET("/article/:slug/delete", Auth(DeleteArticleHandler))
 	r.GET("/article/:slug/publish", Auth(PublishArticleHandler))
 	r.GET("/article/:slug/unpublish", Auth(UnpublishArticleHandler))
+	r.GET("/fortune", FortuneHandler)
 	r.GET("/login", LoginHandler)
 	r.POST("/login", LoginFormHandler)
 	r.GET("/logout", LogoutHandler)

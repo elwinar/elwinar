@@ -95,13 +95,20 @@ func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter
 	return
 }
 
-func DeleteArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	_, err := db.Exec("DELETE FROM articles WHERE slug = ?", p.ByName("slug"))
-	if err != nil {
+func FortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	var fortune Fortune
+	
+	err := db.Get(&fortune, "SELECT * FROM fortunes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM fortunes) LIMIT 1")
+	if err != nil && err != sql.ErrNoRows {
 		panic(err)
 	}
 
-	http.Redirect(w, r, "/read", http.StatusFound)
+	if err == sql.ErrNoRows {
+		http.Error(w, "Page not found", http.StatusNotFound)
+		return
+	}
+	
+	render(w, r, "fortune", fortune)
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
