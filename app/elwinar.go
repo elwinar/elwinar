@@ -41,6 +41,11 @@ func main() {
 			EnvVar: "ELWINAR_PASSWORD",
 		},
 		cli.StringFlag{
+			Name:   "public",
+			Usage:  "public directory",
+			EnvVar: "ELWIANR_PUBLIC",
+		},
+		cli.StringFlag{
 			Name:   "views",
 			Usage:  "views repository",
 			EnvVar: "ELWINAR_VIEWS",

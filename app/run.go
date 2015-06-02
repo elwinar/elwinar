@@ -15,13 +15,13 @@ import (
 )
 
 func Run(context *cli.Context) {
-	err := run(context.Int("port"), context.String("secret"))
+	err := run(context.Int("port"), context.String("secret"), context.String("public"))
 	if err != nil {
 		log.Fatalln("unable to start:", err)
 	}
 }
 
-func run(port int, secret string) error {
+func run(port int, secret string, public string) error {
 	r := httprouter.New()
 	r.GET("/", IndexHandler)
 	r.GET("/read", ReadHandler)
@@ -41,7 +41,7 @@ func run(port int, secret string) error {
 	n := negroni.New()
 	n.Use(gzip.Gzip(gzip.DefaultCompression))
 	n.Use(negroni.NewRecovery())
-	n.Use(negroni.NewStatic(http.Dir("public")))
+	n.Use(negroni.NewStatic(http.Dir(public)))
 	n.Use(sessions.Sessions("elwinar", cookiestore.New([]byte(secret))))
 	n.UseHandler(r)
 
