@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/subtle"
+	"database/sql"
 	"fmt"
 	"github.com/goincremental/negroni-sessions"
 	"github.com/julienschmidt/httprouter"
@@ -10,8 +11,14 @@ import (
 )
 
 func ArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	article := FindArticle(p.ByName("slug"))
-	if article == nil {
+	var article Article
+	
+	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
+	if err != nil && err != sql.ErrNoRows {
+		panic(err)
+	}
+
+	if err == sql.ErrNoRows {
 		http.Error(w, "Page not found", http.StatusNotFound)
 		return
 	}
@@ -24,9 +31,24 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 	render(w, r, "article", article)
 }
 
+func DeleteArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	_, err := db.Exec("DELETE FROM articles WHERE slug = ?", p.ByName("slug"))
+	if err != nil {
+		panic(err)
+	}
+
+	http.Redirect(w, r, "/read", http.StatusFound)
+}
+
 func EditArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	article := FindArticle(p.ByName("slug"))
-	if article == nil {
+	var article Article
+	
+	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
+	if err != nil && err != sql.ErrNoRows {
+		panic(err)
+	}
+
+	if err == sql.ErrNoRows {
 		http.Error(w, "Page not found", http.StatusNotFound)
 		return
 	}
@@ -35,8 +57,14 @@ func EditArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Par
 }
 
 func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	article := FindArticle(p.ByName("slug"))
-	if article == nil {
+	var article Article
+	
+	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
+	if err != nil && err != sql.ErrNoRows {
+		panic(err)
+	}
+
+	if err == sql.ErrNoRows {
 		http.Error(w, "Page not found", http.StatusNotFound)
 		return
 	}
@@ -58,7 +86,7 @@ func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter
 		return
 	}
 
-	_, err := db.Exec("UPDATE articles SET title = ?, slug = ?, tagline = ?, text = ?, tags = ?, updated_at = datetime('now') WHERE id = ?", r.FormValue("title"), r.FormValue("slug"), r.FormValue("tagline"), r.FormValue("text"), r.FormValue("tags"), article.ID)
+	_, err = db.Exec("UPDATE articles SET title = ?, slug = ?, tagline = ?, text = ?, tags = ?, updated_at = datetime('now') WHERE id = ?", r.FormValue("title"), r.FormValue("slug"), r.FormValue("tagline"), r.FormValue("text"), r.FormValue("tags"), article.ID)
 	if err != nil {
 		panic(err)
 	}
@@ -114,12 +142,23 @@ func PublishArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.
 }
 
 func ReadHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	articles := AllArticles()
+	var articles []*Article
+
+	err := db.Select(&articles, "SELECT * FROM articles ORDER BY published_at DESC")
+	if err != nil {
+		panic(err)
+	}
+
 	render(w, r, "read", articles)
 }
 
 func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	articles := PublishedArticles()
+	var articles []*Article
+
+	err := db.Select(&articles, "SELECT id, title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at FROM articles WHERE is_published = ? ORDER BY updated_at DESC", true)
+	if err != nil {
+		panic(err)
+	}
 
 	var urlset sitemap.URLSet
 	urlset.URLs = []sitemap.URL{
