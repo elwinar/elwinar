@@ -17,7 +17,7 @@ Vagrant.configure(2) do |config|
 	
 	config.vm.provision "shell", inline: <<EOS
 		pacman -Suyy --noconfirm
-		pacman -S --noconfirm nodejs tmux most
+		pacman -S --noconfirm nodejs npm tmux most
 		npm install -g bower gulp
 EOS
 end
