@@ -4,11 +4,5 @@
 				{{ .Text | Markdown }}
 				<footer>{{ .Author }}</footer>
 			</blockquote>
-{{ if Logged }}
-			<nav>
-				<a href="/fortune/{{ .ID }}/edit" title="edit"><span class="fa fa-pencil"></span></a>
-				<a href="/fortune/{{ .ID }}/delete" title="delete"><span class="fa fa-trash-o"></span></a>
-			</nav>
-{{ end }}
 {{ end }}
 {{ end }}
