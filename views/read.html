@@ -1,4 +1,4 @@
-{{ define "view" }}
+{{ define "view" }}{{ with .Articles }}
 			<h1>Articles in ante-chronological order</h1>
 	{{ if Logged }}
 			<p><a href="/write">New</a></p>
@@ -23,4 +23,4 @@
 		{{ end }}
 	{{ end }}
 			</ul>
-{{ end }}
+{{ end }}{{ end }}

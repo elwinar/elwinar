@@ -28,7 +28,10 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 		return
 	}
 
-	render(w, r, "article", article)
+	render(w, r, "article", map[string]interface{}{
+		"Title": article.Title,
+		"Article": article,
+	})
 }
 
 func DeleteArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -53,7 +56,10 @@ func EditArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Par
 		return
 	}
 
-	render(w, r, "edit", article)
+	render(w, r, "edit", map[string]interface{}{
+		"Title": "Edit " + article.Title,
+		"Article": article,
+	})
 }
 
 func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -108,15 +114,22 @@ func FortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 		return
 	}
 	
-	render(w, r, "fortune", fortune)
+	render(w, r, "fortune", map[string]interface{}{
+		"Title": "Fortune",
+		"Fortune": fortune,
+	})
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	render(w, r, "index", nil)
+	render(w, r, "index", map[string]interface{}{
+		"Title": "Passionate developer",
+	})
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	render(w, r, "login", nil)
+	render(w, r, "login", map[string]interface{}{
+		"Title": "Login",
+	})
 }
 
 func LoginFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -156,7 +169,10 @@ func ReadHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		panic(err)
 	}
 
-	render(w, r, "read", articles)
+	render(w, r, "read", map[string]interface{}{
+		"Title": "Read",
+		"Articles": articles,
+	})
 }
 
 func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -205,7 +221,9 @@ func UnpublishArticleHandler(w http.ResponseWriter, r *http.Request, p httproute
 }
 
 func WriteHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	render(w, r, "write", nil)
+	render(w, r, "write", map[string]interface{}{
+		"Title": "Write",
+	})
 }
 
 func WriteFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
