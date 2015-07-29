@@ -1,4 +1,5 @@
-{{ define "view" }}{{ with .Article }}
+{{ define "view" }}
+{{ with .Article }}
 			<h1>{{ .Title }}</h1>
 			<p class="lead">{{ .PublishedAt | DateFormat "2006.01.02" }}</p>
 			{{ .Text | Markdown }}
@@ -13,4 +14,5 @@
 				<a href="/article/{{ .Slug }}/delete" title="delete"><span class="fa fa-trash-o"></span></a>
 			</nav>
 {{ end }}
-{{ end }}{{ end }}
+{{ end }}
+{{ end }}

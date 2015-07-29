@@ -1,4 +1,5 @@
-{{ define "view" }}{{ with .Fortune }}
+{{ define "view" }}
+{{ with .Fortune }}
 			<blockquote>
 				{{ .Text | Markdown }}
 				<footer>{{ .Author }}</footer>
@@ -9,4 +10,5 @@
 				<a href="/fortune/{{ .ID }}/delete" title="delete"><span class="fa fa-trash-o"></span></a>
 			</nav>
 {{ end }}
-{{ end }}{{ end }}
+{{ end }}
+{{ end }}

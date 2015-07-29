@@ -1,4 +1,5 @@
-{{ define "view" }}{{ with .Article }}
+{{ define "view" }}
+{{ with .Article }}
 			<h1>Edit article</h1>
 {{ if Errors }}
 			<ul class="errors">
@@ -15,4 +16,5 @@
 				<input type="text" name="tags" placeholder="Tags" value="{{ .Tags }}">
 				<input type="submit" value="Save">
 			</form>
-{{ end }}{{ end }}
+{{ end }}
+{{ end }}
