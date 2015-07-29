@@ -1,7 +1,7 @@
 {{ define "view" }}{{ with .Fortune }}
 			<blockquote>
 				{{ .Text | Markdown }}
-				<footer>— {{ .Author }}</footer>
+				<footer>{{ .Author }}</footer>
 			</blockquote>
 {{ if Logged }}
 			<nav>
