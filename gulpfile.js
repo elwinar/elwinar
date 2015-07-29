@@ -15,7 +15,9 @@ gulp.task('styles', function() {
 	])
 	.pipe(plumber())
 	.pipe(concat('app.less'))
-	.pipe(less())
+	.pipe(less({
+		paths: [ 'styles' ],
+	}))
 	.pipe(rename({extname: '.css'}))
 	.pipe(uncss({html: ['views/*.html']}))
 	.pipe(autoprefixer())
