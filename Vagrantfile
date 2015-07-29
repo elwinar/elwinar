@@ -7,13 +7,8 @@ Vagrant.configure(2) do |config|
 			host: 8080,
 			auto_correct: true
 	
-	config.vm.network "private_network",
-			type: "dhcp"
-	
 	config.vm.synced_folder ".", 
-			"/home/vagrant/src/github.com/elwinar/elwinar", 
-			nfs: true,
-			mount_options: ["actimeo=1"]
+			"/home/vagrant/src/github.com/elwinar/elwinar"
 	
 	config.vm.provision "shell", inline: <<EOS
 		pacman -Suyy --noconfirm
