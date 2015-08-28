@@ -1,5 +1,4 @@
 {{ define "view" }}
-{{ with .Article }}
 			<h1>New article</h1>
 {{ if Errors }}
 			<ul class="errors">
@@ -16,5 +15,4 @@
 				<input type="text" name="tags" placeholder="Tags" value="{{ Input.Get "tags" }}">
 				<input type="submit" value="Create">
 			</form>
-{{ end }}
 {{ end }}
