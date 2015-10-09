@@ -10,7 +10,7 @@ var templates map[string]*html.Template
 func init() {
 	templates = make(map[string]*html.Template)
 
-	raw, err := Asset("../views/app.html")
+	raw, err := Asset("views/app.html")
 	if err != nil {
 		panic(err)
 	}
