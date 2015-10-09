@@ -8,14 +8,18 @@ import (
 	"github.com/sourcegraph/sitemap"
 )
 
-func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+// Sitemap will display an XML map of the website.
+func Sitemap(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
 	var articles []*Article
 
+	// Get each article.
 	err := database.Select(&articles, "SELECT id, title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at FROM articles WHERE is_published = ? ORDER BY updated_at DESC", true)
 	if err != nil {
 		panic(err)
 	}
 
+	// Add the static pages.
 	var urlset sitemap.URLSet
 	urlset.URLs = []sitemap.URL{
 		{
@@ -28,6 +32,7 @@ func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 		},
 	}
 
+	// Add the article pages.
 	for _, a := range articles {
 		urlset.URLs = append(urlset.URLs, sitemap.URL{
 			Loc:        fmt.Sprintf("%s/article/%s", configuration.Base, a.Slug),
@@ -36,6 +41,7 @@ func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 		})
 	}
 
+	// Marshal the sitemap to XML.
 	raw, err := sitemap.Marshal(&urlset)
 	if err != nil {
 		panic(err)
