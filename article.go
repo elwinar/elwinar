@@ -26,7 +26,7 @@ type Article struct {
 
 // MarshalHTML returns the text of the article in HTML format.
 func (a Article) MarshalHTML() string {
-	return blackfriday.MarkdownCommon([]byte(a.Text))
+	return string(blackfriday.MarkdownCommon([]byte(a.Text)))
 }
 
 // View handle the displaying of articles.
