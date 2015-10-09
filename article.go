@@ -180,12 +180,7 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	// If the user isn't logged, only show published articles and order them by publication date.
 	// If the user is logged, show all articles and order them by creation date.
-	var err error
-	if logged {
-		err = database.Select(&articles, "SELECT * FROM articles WHERE is_published = true ORDER BY published_at DESC")
-	} else {
-		err = database.Select(&articles, "SELECT * FROM articles WHERE ORDER BY created_at DESC")
-	}
+	err := database.Select(&articles, "SELECT * FROM articles WHERE is_published = ? ORDER BY published_at DESC", logged)
 	if err != nil {
 		panic(err)
 	}
