@@ -30,7 +30,7 @@ func init() {
 	} {
 		t, _ := layout.Clone()
 
-		raw, err := Asset("../views/" + template + ".html")
+		raw, err := Asset("views/" + template + ".html")
 		if err != nil {
 			panic(err)
 		}
