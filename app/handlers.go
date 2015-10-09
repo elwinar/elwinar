@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
+	sessions "github.com/goincremental/negroni-sessions"
 	"github.com/julienschmidt/httprouter"
 	"github.com/sourcegraph/sitemap"
 )
@@ -13,7 +14,7 @@ import (
 func ArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var article Article
 
-	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
+	err := database.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
 	}
@@ -35,7 +36,7 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 }
 
 func DeleteArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	_, err := db.Exec("DELETE FROM articles WHERE slug = ?", p.ByName("slug"))
+	_, err := database.Exec("DELETE FROM articles WHERE slug = ?", p.ByName("slug"))
 	if err != nil {
 		panic(err)
 	}
@@ -46,7 +47,7 @@ func DeleteArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.P
 func EditArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var article Article
 
-	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
+	err := database.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
 	}
@@ -65,7 +66,7 @@ func EditArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Par
 func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var article Article
 
-	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
+	err := database.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
 	}
@@ -92,7 +93,7 @@ func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter
 		return
 	}
 
-	_, err = db.Exec("UPDATE articles SET title = ?, slug = ?, tagline = ?, text = ?, tags = ?, updated_at = datetime('now') WHERE id = ?", r.FormValue("title"), r.FormValue("slug"), r.FormValue("tagline"), r.FormValue("text"), r.FormValue("tags"), article.ID)
+	_, err = database.Exec("UPDATE articles SET title = ?, slug = ?, tagline = ?, text = ?, tags = ?, updated_at = datetime('now') WHERE id = ?", r.FormValue("title"), r.FormValue("slug"), r.FormValue("tagline"), r.FormValue("text"), r.FormValue("tags"), article.ID)
 	if err != nil {
 		panic(err)
 	}
@@ -104,7 +105,7 @@ func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter
 func FortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var fortune Fortune
 
-	err := db.Get(&fortune, "SELECT * FROM fortunes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM fortunes) LIMIT 1")
+	err := database.Get(&fortune, "SELECT * FROM fortunes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM fortunes) LIMIT 1")
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
 	}
@@ -133,12 +134,12 @@ func LoginHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func LoginFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	if subtle.ConstantTimeEq(int32(len(r.FormValue("password"))), int32(len(PASSWORD))) == 0 {
+	if subtle.ConstantTimeEq(int32(len(r.FormValue("password"))), int32(len(configuration.Password))) == 0 {
 		http.Redirect(w, r, "/login", http.StatusFound)
 		return
 	}
 
-	if subtle.ConstantTimeCompare([]byte(r.FormValue("password")), []byte(PASSWORD)) == 0 {
+	if subtle.ConstantTimeCompare([]byte(r.FormValue("password")), []byte(configuration.Password)) == 0 {
 		http.Redirect(w, r, "/login", http.StatusFound)
 		return
 	}
@@ -153,7 +154,7 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 }
 
 func PublishArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	_, err := db.Exec("UPDATE articles SET is_published = ?, published_at = datetime('now') WHERE slug = ?", true, p.ByName("slug"))
+	_, err := database.Exec("UPDATE articles SET is_published = ?, published_at = datetime('now') WHERE slug = ?", true, p.ByName("slug"))
 	if err != nil {
 		panic(err)
 	}
@@ -164,7 +165,7 @@ func PublishArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.
 func ReadHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var articles []*Article
 
-	err := db.Select(&articles, "SELECT * FROM articles ORDER BY published_at DESC")
+	err := database.Select(&articles, "SELECT * FROM articles ORDER BY published_at DESC")
 	if err != nil {
 		panic(err)
 	}
@@ -178,7 +179,7 @@ func ReadHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var articles []*Article
 
-	err := db.Select(&articles, "SELECT id, title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at FROM articles WHERE is_published = ? ORDER BY updated_at DESC", true)
+	err := database.Select(&articles, "SELECT id, title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at FROM articles WHERE is_published = ? ORDER BY updated_at DESC", true)
 	if err != nil {
 		panic(err)
 	}
@@ -186,18 +187,18 @@ func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 	var urlset sitemap.URLSet
 	urlset.URLs = []sitemap.URL{
 		{
-			Loc:        fmt.Sprintf("%s/", BASE),
+			Loc:        fmt.Sprintf("%s/", configuration.Base),
 			ChangeFreq: sitemap.Yearly,
 		},
 		{
-			Loc:        fmt.Sprintf("%s/read", BASE),
+			Loc:        fmt.Sprintf("%s/read", configuration.Base),
 			ChangeFreq: sitemap.Weekly,
 		},
 	}
 
 	for _, a := range articles {
 		urlset.URLs = append(urlset.URLs, sitemap.URL{
-			Loc:        fmt.Sprintf("%s/article/%s", BASE, a.Slug),
+			Loc:        fmt.Sprintf("%s/article/%s", configuration.Base, a.Slug),
 			LastMod:    &a.UpdatedAt,
 			ChangeFreq: sitemap.Monthly,
 		})
@@ -212,7 +213,7 @@ func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 }
 
 func UnpublishArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	_, err := db.Exec("UPDATE articles SET is_published = ? WHERE slug = ?", false, p.ByName("slug"))
+	_, err := database.Exec("UPDATE articles SET is_published = ? WHERE slug = ?", false, p.ByName("slug"))
 	if err != nil {
 		panic(err)
 	}
@@ -244,7 +245,7 @@ func WriteFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Param
 		return
 	}
 
-	_, err := db.Exec("INSERT INTO articles (title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at) VALUES (?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'), datetime('now'))", r.FormValue("title"), r.FormValue("slug"), r.FormValue("tagline"), r.FormValue("text"), r.FormValue("tags"), false)
+	_, err := database.Exec("INSERT INTO articles (title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at) VALUES (?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'), datetime('now'))", r.FormValue("title"), r.FormValue("slug"), r.FormValue("tagline"), r.FormValue("text"), r.FormValue("tags"), false)
 	if err != nil {
 		panic(err)
 	}

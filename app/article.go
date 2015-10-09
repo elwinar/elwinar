@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// Article is the type that holds blog posts.
 type Article struct {
 	ID          int64     `db:"id"`
 	Title       string    `db:"title"`

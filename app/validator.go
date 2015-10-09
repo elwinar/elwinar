@@ -49,7 +49,7 @@ func (v *Validator) DoesntExists(field, table, column string, allowed ...string)
 		}
 	}
 
-	err := db.Get(new(int), "SELECT id FROM `"+table+"` WHERE `"+column+"` = ?", v.r.FormValue(field))
+	err := database.Get(new(int), "SELECT id FROM `"+table+"` WHERE `"+column+"` = ?", v.r.FormValue(field))
 
 	if err == sql.ErrNoRows {
 		return

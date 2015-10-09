@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"time"
 
+	sessions "github.com/goincremental/negroni-sessions"
 	"github.com/russross/blackfriday"
 )
 
@@ -32,7 +33,7 @@ func AgeHelper(birthdate string) (string, error) {
 }
 
 func BaseHelper() string {
-	return BASE
+	return configuration.Base
 }
 
 func DateFormatHelper(format string, date time.Time) string {
@@ -48,7 +49,7 @@ func MarkdownHelper(text string) template.HTML {
 }
 
 func GoogleAnalyticsIDHelper() string {
-	return GOOGLE_ANALYTICS_ID
+	return configuration.GID
 }
 
 func render(w http.ResponseWriter, r *http.Request, name string, data interface{}) {
@@ -83,7 +84,7 @@ func render(w http.ResponseWriter, r *http.Request, name string, data interface{
 		"Session": func(name string) interface{} {
 			return sessions.GetSession(r).Get(name)
 		},
-	}).ParseFiles(filepath.Join(VIEWS, "app.html"), filepath.Join(VIEWS, name+".html"))
+	}).ParseFiles(filepath.Join(configuration.Views, "app.html"), filepath.Join(configuration.Views, name+".html"))
 	if err != nil {
 		panic("unable to parse template " + name + ":" + err.Error())
 	}

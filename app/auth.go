@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	sessions "github.com/goincremental/negroni-sessions"
 	"github.com/julienschmidt/httprouter"
 )
 
