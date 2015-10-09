@@ -7,16 +7,17 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-type Fortune struct {
+type Quote struct {
 	ID     int64  `db:"id"`
 	Text   string `db:"text"`
 	Author string `db:"author"`
 }
 
-func FortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	var fortune Fortune
+// Roll a new fortune.
+func Roll(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	var quote Quote
 
-	err := database.Get(&fortune, "SELECT * FROM fortunes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM fortunes) LIMIT 1")
+	err := database.Get(&quote, "SELECT * FROM quotes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM fortunes) LIMIT 1")
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
 	}
@@ -26,8 +27,8 @@ func FortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 		return
 	}
 
-	render(w, r, "fortune", map[string]interface{}{
-		"Title":   "Fortune",
-		"Fortune": fortune,
+	render(w, r, "quote", map[string]interface{}{
+		"Title": "Fortune",
+		"Quote": quote,
 	})
 }

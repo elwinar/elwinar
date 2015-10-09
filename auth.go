@@ -8,23 +8,17 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func Auth(handle httprouter.Handle) httprouter.Handle {
-	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		if sessions.GetSession(r).Get("logged") != true {
-			http.Error(w, "Unauthorized", http.StatusUnauthorized)
-			return
-		}
-		handle(w, r, p)
-	}
-}
+// Login display the login form.
+func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
-func LoginHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	render(w, r, "login", map[string]interface{}{
 		"Title": "Login",
 	})
 }
 
-func LoginFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+// Authenticate check the user credentials.
+func Authenticate(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
 	if subtle.ConstantTimeEq(int32(len(r.FormValue("password"))), int32(len(configuration.Password))) == 0 {
 		http.Redirect(w, r, "/login", http.StatusFound)
 		return
@@ -39,7 +33,9 @@ func LoginFormHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Param
 	http.Redirect(w, r, "/read", http.StatusFound)
 }
 
-func LogoutHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+// Logout de-authenticate the user.
+func Logout(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
 	sessions.GetSession(r).Clear()
 	http.Redirect(w, r, r.Referer(), http.StatusFound)
 }

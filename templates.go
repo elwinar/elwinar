@@ -1,8 +1,7 @@
 package main
 
 import (
-	"template/html"
-	"text/template"
+	"html/template"
 )
 
 var templates map[string]*html.Template
@@ -25,7 +24,7 @@ func init() {
 		"article_form",
 		"article_list",
 		"article_edit",
-		"fortune",
+		"quote",
 		"index",
 		"login",
 	} {
