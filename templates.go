@@ -4,10 +4,10 @@ import (
 	"html/template"
 )
 
-var templates map[string]*html.Template
+var templates map[string]*template.Template
 
 func init() {
-	templates = make(map[string]*html.Template)
+	templates = make(map[string]*template.Template)
 
 	raw, err := Asset("views/app.html")
 	if err != nil {
