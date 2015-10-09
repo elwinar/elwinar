@@ -5,7 +5,7 @@
 case "$1" in
 
 	build)
-		go build -o elwinar ./app
+		go build -o elwinar .
 	;;
 
 	build-assets)
@@ -13,7 +13,7 @@ case "$1" in
 	;;
 
 	start)
-		./elwinar --port=$PORT --database=$DATABASE --secret=$SECRET --password=$PASSWORD --public=$PUBLIC --views=$VIEWS --base=$BASE --google-analytics-id=$GOOGLE_ANALYTICS_ID > elwinar.log 2>&1 &
+		./elwinar > elwinar.log 2>&1 &
 	;;
 
 	stop)
