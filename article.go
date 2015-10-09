@@ -50,7 +50,7 @@ func View(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		return
 	}
 
-	render(w, r, "article", map[string]interface{}{
+	render(w, "article", map[string]interface{}{
 		"Title":   article.Title,
 		"Article": article,
 	})
@@ -96,7 +96,7 @@ func Edit(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		return
 	}
 
-	render(w, r, "edit", map[string]interface{}{
+	render(w, "edit", map[string]interface{}{
 		"Title":   "Edit " + article.Title,
 		"Article": article,
 	})
@@ -149,7 +149,6 @@ func Update(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	}
 
 	http.Redirect(w, r, "/article/"+r.FormValue("slug"), http.StatusFound)
-	return
 }
 
 // Publish set the published flag of an article to true.
@@ -185,7 +184,7 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		panic(err)
 	}
 
-	render(w, r, "read", map[string]interface{}{
+	render(w, "read", map[string]interface{}{
 		"Title":    "Read",
 		"Articles": articles,
 		"Logged":   logged,
@@ -219,7 +218,7 @@ func Write(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		return
 	}
 
-	render(w, r, "write", map[string]interface{}{
+	render(w, "write", map[string]interface{}{
 		"Title": "Write",
 	})
 }
