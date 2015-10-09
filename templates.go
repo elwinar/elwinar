@@ -3,10 +3,21 @@ package main
 import (
 	"html/template"
 	"net/http"
+	"time"
+
+	sessions "github.com/goincremental/negroni-sessions"
 )
 
 // templates contains all the templates parsed at run-time.
 var templates map[string]*template.Template
+
+// helpers define new functions available in the templates.
+var helpers = template.FuncMap{
+	// Format return the string corresponding to the given format for the given date.
+	"Format": func(format string, date time.Time) string {
+		return date.Format(format)
+	},
+}
 
 // init parse the layout template and the view templates.
 func init() {
@@ -17,21 +28,21 @@ func init() {
 		panic(err)
 	}
 
-	layout, err := template.New("layout").Parse(string(raw))
+	layout, err := template.New("layout").Funcs(helpers).Parse(string(raw))
 	if err != nil {
 		panic(err)
 	}
 
 	for _, template := range []string{
-		"article_view",
-		"article_form",
+		"article",
 		"article_list",
+		"article_form",
 		"article_edit",
-		"quote",
 		"index",
+		"quote",
 		"login",
 	} {
-		t, _ := layout.Clone()
+		t, err := layout.Clone()
 
 		raw, err := Asset("views/" + template + ".html")
 		if err != nil {
@@ -48,11 +59,14 @@ func init() {
 }
 
 // render write the given template on a response writer.
-func render(w http.ResponseWriter, name string, data interface{}) {
+func render(w http.ResponseWriter, r *http.Request, name string, data map[string]interface{}) {
 	t, found := templates[name]
 	if !found {
 		panic("unknown template " + name)
 	}
+
+	data["Logged"] = sessions.GetSession(r).Get("logged")
+	data["Configuration"] = configuration
 
 	t.ExecuteTemplate(w, "app", data)
 }

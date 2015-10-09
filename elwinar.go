@@ -22,7 +22,7 @@ import (
 // which database to use, etc.
 type Configuration struct {
 	Port     int
-	Base     string
+	Domain   string
 	Database string
 	Secret   string
 	Password string

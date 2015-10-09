@@ -11,7 +11,7 @@ import (
 // Login display the login form.
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
-	render(w, "login", map[string]interface{}{
+	render(w, r, "login", map[string]interface{}{
 		"Title": "Login",
 	})
 }

@@ -1,15 +1,15 @@
 {{ define "view" }}
 {{ with .Articles }}
 			<h1>Articles in ante-chronological order</h1>
-	{{ if Logged }}
+	{{ if .Logged }}
 			<p><a href="/write">New</a></p>
 	{{ end }}
 			<ul class="articles">
 	{{ range . }}
-		{{ if or Logged .IsPublished }}
+		{{ if or .Logged .IsPublished }}
 				<li>
-					{{ .PublishedAt | DateFormat "2006.01.02" }} / <a href="/article/{{ .Slug }}" title="{{ .Tagline }}">{{ .Title }}</a>
-			{{ if Logged }}
+					{{ .PublishedAt | Format "2006.01.02" }} / <a href="/article/{{ .Slug }}" title="{{ .Tagline }}">{{ .Title }}</a>
+			{{ if .Logged }}
 					<nav>
 				{{ if .IsPublished }}
 						<a href="/article/{{ .Slug }}/unpublish" title="unpublish"><span class="fa fa-eye-slash"></span></a>

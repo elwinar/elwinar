@@ -27,7 +27,7 @@ func Fortune(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		return
 	}
 
-	render(w, "quote", map[string]interface{}{
+	render(w, r, "quote", map[string]interface{}{
 		"Title": "Fortune",
 		"Quote": quote,
 	})

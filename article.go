@@ -50,7 +50,7 @@ func View(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		return
 	}
 
-	render(w, "article", map[string]interface{}{
+	render(w, r, "article", map[string]interface{}{
 		"Title":   article.Title,
 		"Article": article,
 	})
@@ -96,7 +96,7 @@ func Edit(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		return
 	}
 
-	render(w, "edit", map[string]interface{}{
+	render(w, r, "edit", map[string]interface{}{
 		"Title":   "Edit " + article.Title,
 		"Article": article,
 	})
@@ -184,7 +184,7 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		panic(err)
 	}
 
-	render(w, "read", map[string]interface{}{
+	render(w, r, "read", map[string]interface{}{
 		"Title":    "Read",
 		"Articles": articles,
 		"Logged":   logged,
@@ -218,7 +218,7 @@ func Write(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		return
 	}
 
-	render(w, "write", map[string]interface{}{
+	render(w, r, "write", map[string]interface{}{
 		"Title": "Write",
 	})
 }

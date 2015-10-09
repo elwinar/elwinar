@@ -1,9 +1,9 @@
 {{ define "view" }}
 {{ with .Article }}
 			<h1>{{ .Title }}</h1>
-			<p class="lead">{{ .PublishedAt | DateFormat "2006.01.02" }}</p>
-			{{ .Text | Markdown }}
-{{ if Logged }}
+			<p class="lead">{{ .PublishedAt | Format "2006.01.02" }}</p>
+			{{ .Text }}
+{{ if .Logged }}
 			<nav>
 	{{ if .IsPublished }}
 				<a href="/article/{{ .Slug }}/unpublish" title="unpublish"><span class="fa fa-eye-slash"></span></a>
