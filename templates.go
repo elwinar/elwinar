@@ -5,12 +5,14 @@ import (
 	"net/http"
 )
 
+// templates contains all the templates parsed at run-time.
 var templates map[string]*template.Template
 
+// init parse the layout template and the view templates.
 func init() {
 	templates = make(map[string]*template.Template)
 
-	raw, err := Asset("views/app.html")
+	raw, err := Asset("views/layout.html")
 	if err != nil {
 		panic(err)
 	}
@@ -45,6 +47,7 @@ func init() {
 	}
 }
 
+// render write the given template on a response writer.
 func render(w http.ResponseWriter, name string, data interface{}) {
 	t, found := templates[name]
 	if !found {
