@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+	"time"
+
 	"github.com/codegangsta/cli"
 	"github.com/codegangsta/negroni"
-	"github.com/goincremental/negroni-sessions"
 	"github.com/goincremental/negroni-sessions/cookiestore"
 	"github.com/julienschmidt/httprouter"
 	"github.com/phyber/negroni-gzip/gzip"
 	"github.com/stretchr/graceful"
-	"log"
-	"net/http"
-	"time"
 )
 
 func Run(context *cli.Context) {

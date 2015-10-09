@@ -2,8 +2,6 @@ package main
 
 import (
 	"encoding/gob"
-	"github.com/goincremental/negroni-sessions"
-	"github.com/russross/blackfriday"
 	"html/template"
 	"net/http"
 	"net/url"
@@ -11,6 +9,8 @@ import (
 	"path/filepath"
 	"strconv"
 	"time"
+
+	"github.com/russross/blackfriday"
 )
 
 func init() {

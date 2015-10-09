@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/goincremental/negroni-sessions"
-	"github.com/julienschmidt/httprouter"
 	"net/http"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 func Auth(handle httprouter.Handle) httprouter.Handle {

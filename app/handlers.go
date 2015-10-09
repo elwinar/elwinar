@@ -4,15 +4,15 @@ import (
 	"crypto/subtle"
 	"database/sql"
 	"fmt"
-	"github.com/goincremental/negroni-sessions"
+	"net/http"
+
 	"github.com/julienschmidt/httprouter"
 	"github.com/sourcegraph/sitemap"
-	"net/http"
 )
 
 func ArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var article Article
-	
+
 	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
@@ -29,7 +29,7 @@ func ArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 	}
 
 	render(w, r, "article", map[string]interface{}{
-		"Title": article.Title,
+		"Title":   article.Title,
 		"Article": article,
 	})
 }
@@ -45,7 +45,7 @@ func DeleteArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.P
 
 func EditArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var article Article
-	
+
 	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
@@ -57,14 +57,14 @@ func EditArticleHandler(w http.ResponseWriter, r *http.Request, p httprouter.Par
 	}
 
 	render(w, r, "edit", map[string]interface{}{
-		"Title": "Edit " + article.Title,
+		"Title":   "Edit " + article.Title,
 		"Article": article,
 	})
 }
 
 func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var article Article
-	
+
 	err := db.Get(&article, "SELECT * FROM articles WHERE slug = ?", p.ByName("slug"))
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
@@ -103,7 +103,7 @@ func EditArticleFormHandler(w http.ResponseWriter, r *http.Request, p httprouter
 
 func FortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var fortune Fortune
-	
+
 	err := db.Get(&fortune, "SELECT * FROM fortunes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM fortunes) LIMIT 1")
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
@@ -113,9 +113,9 @@ func FortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 		http.Error(w, "Page not found", http.StatusNotFound)
 		return
 	}
-	
+
 	render(w, r, "fortune", map[string]interface{}{
-		"Title": "Fortune",
+		"Title":   "Fortune",
 		"Fortune": fortune,
 	})
 }
@@ -170,7 +170,7 @@ func ReadHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 
 	render(w, r, "read", map[string]interface{}{
-		"Title": "Read",
+		"Title":    "Read",
 		"Articles": articles,
 	})
 }
