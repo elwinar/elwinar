@@ -27,7 +27,6 @@ type Configuration struct {
 	Secret   string
 	Password string
 	Public   string
-	Views    string
 	GID      string
 }
 
