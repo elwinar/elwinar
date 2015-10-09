@@ -14,7 +14,7 @@ type Quote struct {
 }
 
 // Roll a new fortune.
-func Roll(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func Fortune(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var quote Quote
 
 	err := database.Get(&quote, "SELECT * FROM quotes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM fortunes) LIMIT 1")
