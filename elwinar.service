@@ -1,0 +1,15 @@
+[Unit]
+Description=Elwinar's website
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+User=elwinar
+Group=elwinar
+ExecStart=/usr/bin/elwinar
+WorkingDirectory=/srv/elwinar
+
+[Install]
+WantedBy=multi-user.target
+
