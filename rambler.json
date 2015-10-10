@@ -1,5 +1,5 @@
 {
 	"driver": "sqlite",
-	"path": "database∕/storage",
-	"directory": "database/"
+	"database": "elwinar.sqlite",
+	"directory": "."
 }

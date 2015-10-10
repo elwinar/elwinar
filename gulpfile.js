@@ -10,16 +10,16 @@ var uncss = require('gulp-uncss');
 
 gulp.task('styles', function() {
 	gulp.src([
-		'styles/app.less',
+		'elwinar.less',
 		'bower_components/prism/themes/prism.css',
 	])
 	.pipe(plumber())
 	.pipe(concat('app.less'))
 	.pipe(less({
-		paths: [ 'styles' ],
+		paths: [ '.' ],
 	}))
 	.pipe(rename({extname: '.css'}))
-	.pipe(uncss({html: ['views/*.html']}))
+	.pipe(uncss({html: ['*.html']}))
 	.pipe(autoprefixer())
 	.pipe(minify())
 	.pipe(gulp.dest('public/'));
@@ -46,7 +46,7 @@ gulp.task('scripts', function () {
 		'bower_components/prism/components/prism-markup.js',
 		'bower_components/prism/components/prism-php.js',
 		'bower_components/prism/components/prism-ruby.js',
-		'scripts/*.js',
+		'*.js',
 	])
 	.pipe(plumber())
 	.pipe(concat('app.js'))
@@ -56,9 +56,9 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('watch', function () {
-	gulp.watch('scripts/*.js', ['scripts']);
-	gulp.watch('styles/*.less', ['styles']);
-	gulp.watch('views/*.html', ['styles']);
+	gulp.watch('*.js', ['scripts']);
+	gulp.watch('*.less', ['styles']);
+	gulp.watch('*.html', ['styles']);
 });
 
 gulp.task('default', ['styles', 'fonts', 'scripts']);
