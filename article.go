@@ -175,7 +175,7 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var articles []*Article
 
 	// Get the login status of the user.
-	logged := sessions.GetSession(r).Get("logged").(bool)
+	logged := sessions.GetSession(r).Get("logged") == nil
 
 	// If the user isn't logged, only show published articles and order them by publication date.
 	// If the user is logged, show all articles and order them by creation date.
