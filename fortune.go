@@ -17,7 +17,7 @@ type Quote struct {
 func Fortune(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var quote Quote
 
-	err := database.Get(&quote, "SELECT * FROM quotes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM fortunes) LIMIT 1")
+	err := database.Get(&quote, "SELECT * FROM quotes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM quotes) LIMIT 1")
 	if err != nil && err != sql.ErrNoRows {
 		panic(err)
 	}
@@ -27,7 +27,7 @@ func Fortune(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		return
 	}
 
-	render(w, r, "quote", map[string]interface{}{
+	render(w, r, "fortune", map[string]interface{}{
 		"Title": "Fortune",
 		"Quote": quote,
 	})

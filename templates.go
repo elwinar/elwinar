@@ -39,7 +39,7 @@ func init() {
 		"article_form",
 		"article_edit",
 		"index",
-		"quote",
+		"fortune",
 		"login",
 	} {
 		t, err := layout.Clone()
