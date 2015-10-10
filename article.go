@@ -184,7 +184,7 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		panic(err)
 	}
 
-	render(w, r, "read", map[string]interface{}{
+	render(w, r, "article_list", map[string]interface{}{
 		"Title":    "Read",
 		"Articles": articles,
 		"Logged":   logged,
