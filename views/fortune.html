@@ -1,9 +1,8 @@
-{{ define "view" }}
+{{ inherits "layout" }}
 {{ with .Quote }}
 			<h1>#{{ .ID }}</h1>
 			<blockquote>
 				{{ .Text }}
 				<footer>{{ .Author }}</footer>
 			</blockquote>
-{{ end }}
 {{ end }}

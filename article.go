@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"html/template"
 	"net/http"
 	"time"
 
@@ -25,8 +26,8 @@ type Article struct {
 }
 
 // MarshalHTML returns the text of the article in HTML format.
-func (a Article) MarshalHTML() string {
-	return string(blackfriday.MarkdownCommon([]byte(a.Text)))
+func (a Article) MarshalHTML() template.HTML {
+	return template.HTML(blackfriday.MarkdownCommon([]byte(a.Text)))
 }
 
 // View handle the displaying of articles.
@@ -187,7 +188,6 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	render(w, r, "article_list", map[string]interface{}{
 		"Title":    "Read",
 		"Articles": articles,
-		"Logged":   logged,
 	})
 }
 

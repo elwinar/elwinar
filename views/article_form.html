@@ -1,4 +1,4 @@
-{{ define "view" }}
+{{ inherits "layout" }}
 			<h1>New article</h1>
 			<form method="POST">
 				<input type="text" id="title" name="title" placeholder="Title" required>
@@ -8,4 +8,3 @@
 				<input type="text" name="tags" placeholder="Tags">
 				<input type="submit" value="Create">
 			</form>
-{{ end }}

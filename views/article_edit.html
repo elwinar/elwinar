@@ -1,4 +1,4 @@
-{{ define "view" }}
+{{ inherits "layout" }}
 {{ with .Article }}
 			<h1>Edit article</h1>
 			<form method="POST">
@@ -9,5 +9,4 @@
 				<input type="text" name="tags" placeholder="Tags" value="{{ .Tags }}">
 				<input type="submit" value="Save">
 			</form>
-{{ end }}
 {{ end }}

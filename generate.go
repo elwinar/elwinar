@@ -1,3 +1,3 @@
 package main
 
-//go:generate go-bindata -pkg $GOPACKAGE -o assets.go views/
+//go:generate go-bindata -pkg $GOPACKAGE -o views.go views
