@@ -8,6 +8,9 @@ import (
 	sessions "github.com/goincremental/negroni-sessions"
 )
 
+// The templates are stored into another directory.
+//go:generate go-bindata -nomemcopy -prefix "../" -pkg $GOPACKAGE -o views.go ../views
+
 // templates holds the collection of templates for the whole website.
 var templates *heirloom.Heirloom
 
