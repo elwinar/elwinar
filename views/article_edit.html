@@ -1,6 +1,13 @@
 {{ inherits "layout" }}
 {{ with .Article }}
 			<h1>Edit article</h1>
+	{{ if $.Errors }}
+			<ul class="errors">
+		{{ range $.Errors }}
+				<li>{{ . }}</li>
+		{{ end }}
+			</ul>
+	{{ end }}
 			<form method="POST">
 				<input type="text" id="title" name="title" placeholder="Title" value="{{ .Title }}" required>
 				<input type="text" class="slug" data-target="#title" name="slug" placeholder="Slug" value="{{ .Slug }}" required>

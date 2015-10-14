@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/gob"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/elwinar/heirloom"
@@ -16,6 +18,8 @@ var templates *heirloom.Heirloom
 
 // init parse all the embeded templates and add them to the collection.
 func init() {
+	gob.Register(&url.Values{})
+
 	templates = heirloom.New()
 	templates.Funcs(heirloom.FuncMap{
 		"Format": func(format string, date time.Time) string {
@@ -49,6 +53,16 @@ func init() {
 func render(w http.ResponseWriter, r *http.Request, name string, data map[string]interface{}) {
 	data["Logged"] = sessions.GetSession(r).Get("logged")
 	data["Configuration"] = configuration
+
+	var rawErrors = sessions.GetSession(r).Flashes("_errors")
+	if len(rawErrors) != 0 {
+		data["Errors"] = rawErrors[0].([]string)
+	}
+
+	var rawInputs = sessions.GetSession(r).Flashes("_inputs")
+	if len(rawInputs) != 0 {
+		data["Inputs"] = rawInputs[0].(*url.Values)
+	}
 
 	out, err := templates.Render(name, data)
 	if err != nil {

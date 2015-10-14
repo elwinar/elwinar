@@ -10,7 +10,6 @@ import (
 
 // Login display the login form.
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-
 	render(w, r, "login", map[string]interface{}{
 		"Title": "Login",
 	})

@@ -97,7 +97,7 @@ func Edit(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		return
 	}
 
-	render(w, r, "edit", map[string]interface{}{
+	render(w, r, "article_edit", map[string]interface{}{
 		"Title":   "Edit " + article.Title,
 		"Article": article,
 	})
@@ -175,12 +175,14 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	var articles []*Article
 
-	// Get the login status of the user.
-	logged := sessions.GetSession(r).Get("logged") == nil
-
 	// If the user isn't logged, only show published articles and order them by publication date.
 	// If the user is logged, show all articles and order them by creation date.
-	err := database.Select(&articles, "SELECT * FROM articles WHERE is_published = ? ORDER BY published_at DESC", logged)
+	var err error
+	if sessions.GetSession(r).Get("logged") != true {
+		err = database.Select(&articles, "SELECT * FROM articles WHERE is_published = ? ORDER BY published_at DESC", true)
+	} else {
+		err = database.Select(&articles, "SELECT * FROM articles ORDER BY published_at DESC")
+	}
 	if err != nil {
 		panic(err)
 	}
@@ -218,7 +220,7 @@ func Write(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		return
 	}
 
-	render(w, r, "write", map[string]interface{}{
+	render(w, r, "article_form", map[string]interface{}{
 		"Title": "Write",
 	})
 }
