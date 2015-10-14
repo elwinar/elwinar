@@ -51,7 +51,6 @@ gulp.task('scripts', function () {
 	.pipe(plumber())
 	.pipe(concat('app.js'))
 	.pipe(uglify())
-	.pipe(rename({extname: '.js'}))
 	.pipe(gulp.dest('public'));
 });
 
