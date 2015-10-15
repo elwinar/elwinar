@@ -1,13 +1,13 @@
-{{ define "view" }}
+{{ inherits "layout" }}
 {{ with .Article }}
 			<h1>Edit article</h1>
-{{ if Errors }}
+	{{ if $.Errors }}
 			<ul class="errors">
-{{ range Errors }}
+		{{ range $.Errors }}
 				<li>{{ . }}</li>
-{{ end }}
+		{{ end }}
 			</ul>
-{{ end }}
+	{{ end }}
 			<form method="POST">
 				<input type="text" id="title" name="title" placeholder="Title" value="{{ .Title }}" required>
 				<input type="text" class="slug" data-target="#title" name="slug" placeholder="Slug" value="{{ .Slug }}" required>
@@ -16,5 +16,4 @@
 				<input type="text" name="tags" placeholder="Tags" value="{{ .Tags }}">
 				<input type="submit" value="Save">
 			</form>
-{{ end }}
 {{ end }}

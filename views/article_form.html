@@ -1,0 +1,17 @@
+{{ inherits "layout" }}
+			<h1>New article</h1>
+	{{ if $.Errors }}
+			<ul class="errors">
+		{{ range $.Errors }}
+				<li>{{ . }}</li>
+		{{ end }}
+			</ul>
+	{{ end }}
+			<form method="POST">
+				<input type="text" id="title" name="title" placeholder="Title" value="{{ $.Inputs.Get "title" }}" required>
+				<input type="text" class="slug" data-target="#title" name="slug" placeholder="Slug" value="{{ $.Inputs.Get "slug" }}" required>
+				<input type="text" name="tagline" placeholder="Tagline" value="{{ $.Inputs.Get "tagline" }}" required>
+				<textarea name="text" rows="10" placeholder="Text">{{ $.Inputs.Get "text" }}</textarea>
+				<input type="text" name="tags" placeholder="Tags" value="{{ $.Inputs.Get "tags" }}">
+				<input type="submit" value="Create">
+			</form>

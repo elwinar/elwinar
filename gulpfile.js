@@ -10,7 +10,7 @@ var uncss = require('gulp-uncss');
 
 gulp.task('styles', function() {
 	gulp.src([
-		'styles/app.less',
+		'styles/*.less',
 		'bower_components/prism/themes/prism.css',
 	])
 	.pipe(plumber())
@@ -51,7 +51,6 @@ gulp.task('scripts', function () {
 	.pipe(plumber())
 	.pipe(concat('app.js'))
 	.pipe(uglify())
-	.pipe(rename({extname: '.js'}))
 	.pipe(gulp.dest('public'));
 });
 

@@ -1,68 +1,95 @@
 package main
 
 import (
+	"fmt"
 	"log"
-	"os"
+	"net/http"
+	"time"
 
-	"github.com/codegangsta/cli"
+	"github.com/codegangsta/negroni"
+	sessions "github.com/goincremental/negroni-sessions"
+	"github.com/goincremental/negroni-sessions/cookiestore"
+	"github.com/jmoiron/sqlx"
+	_ "github.com/joho/godotenv/autoload"
+	"github.com/julienschmidt/httprouter"
+	"github.com/kelseyhightower/envconfig"
+	_ "github.com/mattn/go-sqlite3"
+	"github.com/phyber/negroni-gzip/gzip"
+	"github.com/stretchr/graceful"
+)
+
+// Configuration holds the configuration for the website: which port to listen on,
+// which database to use, etc.
+type Configuration struct {
+	Port     int
+	Domain   string
+	Database string
+	Secret   string
+	Password string
+	Public   string
+	GID      string
+}
+
+var (
+	configuration Configuration
+	database      *sqlx.DB
 )
 
 func main() {
-	var app = cli.NewApp()
+	// Load the configuration.
+	err := envconfig.Process("elwinar", &configuration)
+	if err != nil {
+		log.Fatalln("unable to read the configuration from env:", err)
+	}
 
-	app.Name = "elwinar"
-	app.Version = "4"
-	app.Author = "Romain Baugue"
-	app.Email = "romain.baugue@elwinar.com"
+	// Open the database connection.
+	database, err = sqlx.Connect("sqlite3", configuration.Database)
+	if err != nil {
+		log.Fatalln("unable to open the database:", err)
+	}
 
-	app.Flags = []cli.Flag{
-		cli.IntFlag{
-			Name:   "port",
-			Usage:  "listening port",
-			EnvVar: "ELWINAR_PORT",
-		},
-		cli.StringFlag{
-			Name:   "base",
-			Usage:  "base url",
-			EnvVar: "ELWINAR_BASE",
-		},
-		cli.StringFlag{
-			Name:   "database",
-			Usage:  "sqlite database file",
-			EnvVar: "ELWINAR_DATABASE",
-		},
-		cli.StringFlag{
-			Name:   "secret",
-			Usage:  "encryption secret",
-			EnvVar: "ELWINAR_SECRET",
-		},
-		cli.StringFlag{
-			Name:   "password",
-			Usage:  "administrative password",
-			EnvVar: "ELWINAR_PASSWORD",
-		},
-		cli.StringFlag{
-			Name:   "public",
-			Usage:  "public directory",
-			EnvVar: "ELWIANR_PUBLIC",
-		},
-		cli.StringFlag{
-			Name:   "views",
-			Usage:  "views repository",
-			EnvVar: "ELWINAR_VIEWS",
-		},
-		cli.StringFlag{
-			Name:   "google-analytics-id",
-			Usage:  "google analytics tracking id",
-			EnvVar: "ELWINAR_GOOGLE_ANALYTICS_ID",
+	// Initialize the router.
+	router := httprouter.New()
+
+	// Add the front-office handlers.
+	router.GET("/", Index)
+	router.GET("/read", List)
+	router.GET("/article/:slug", View)
+	router.GET("/fortune", Fortune)
+	router.GET("/sitemap.xml", Sitemap)
+
+	// Add the back-office handlers.
+	router.GET("/login", Login)
+	router.POST("/login", Authenticate)
+	router.GET("/logout", Logout)
+	router.GET("/write", Write)
+	router.POST("/write", Create)
+	router.GET("/article/:slug/edit", Edit)
+	router.POST("/article/:slug/edit", Update)
+	router.GET("/article/:slug/delete", Delete)
+	router.GET("/article/:slug/publish", Publish)
+	router.GET("/article/:slug/unpublish", Unpublish)
+
+	// Initialize the server middleware stack.
+	stack := negroni.New()
+	stack.Use(gzip.Gzip(gzip.DefaultCompression))
+	stack.Use(negroni.NewRecovery())
+	stack.Use(negroni.NewStatic(http.Dir(configuration.Public)))
+	stack.Use(sessions.Sessions("elwinar", cookiestore.New([]byte(configuration.Secret))))
+	stack.UseHandler(router)
+
+	// Initialize the HTTP server.
+	server := &graceful.Server{
+		Timeout: 1 * time.Second,
+		Server: &http.Server{
+			Addr:    fmt.Sprintf(":%d", configuration.Port),
+			Handler: stack,
 		},
 	}
 
-	app.Before = Bootstrap
-	app.Action = Run
-
-	err := app.Run(os.Args)
+	// Run the server.
+	err = server.ListenAndServe()
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln("unable to run the server:", err)
 	}
 }
