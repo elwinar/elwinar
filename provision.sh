@@ -24,3 +24,8 @@ go get github.com/elwinar/rambler
 pacman -S --noconfirm nodejs npm
 npm install -g bower gulp
 
+# Docker tools
+pacman -S --noconfirm docker
+systemctl enable docker
+systemctl start docker
+gpasswd -a vagrant docker

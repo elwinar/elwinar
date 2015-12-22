@@ -1,5 +1,5 @@
 {
 	"driver": "sqlite",
-	"database": "elwinar.sqlite",
+	"database": "database.sqlite",
 	"directory": "migrations"
 }

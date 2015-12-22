@@ -37,7 +37,7 @@ var (
 
 func main() {
 	// Load the configuration.
-	err := envconfig.Process("elwinar", &configuration)
+	err := envconfig.Process("app", &configuration)
 	if err != nil {
 		log.Fatalln("unable to read the configuration from env:", err)
 	}
