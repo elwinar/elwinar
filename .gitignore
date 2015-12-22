@@ -8,5 +8,5 @@ public
 elwinar
 elwinar.sqlite
 elwinar.log
-app/views.go
+views.go
 
