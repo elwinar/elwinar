@@ -18,6 +18,7 @@ echo "export PATH=$GOPATH/bin:$PATH" >> /home/vagrant/.bashrc && export PATH=$GO
 chown vagrant:vagrant -R /home/vagrant/src
 go get github.com/jteeuwen/go-bindata/...
 go get github.com/pwaller/goupx
+go get github.com/elwinar/rambler
 
 # Javascript tools
 pacman -S --noconfirm nodejs npm
