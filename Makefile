@@ -7,12 +7,12 @@ assets: *.go package.json bower.json
 	bower install
 
 app: *.go scripts/*.js styles/*.less
-	go build -ldflags "-s" -o elwinar . 
+	go build -ldflags "-s -linkmode external -extldflags -static -w" -o elwinar
 	gulp
 	touch database.sqlite
 	rambler apply --all
 
-pkg:
+pkg: app
 	goupx -q elwinar
 	docker build -t elwinar .
 	docker save elwinar > elwinar.tar
