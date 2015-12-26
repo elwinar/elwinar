@@ -9,7 +9,7 @@ import (
 )
 
 // Sitemap will display an XML map of the website.
-func Sitemap(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	var articles []*Article
 

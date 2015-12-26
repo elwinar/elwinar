@@ -8,7 +8,7 @@ import (
 )
 
 // Index displays the home page of the website.
-func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func IndexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	timezone, err := time.LoadLocation("Europe/Paris")
 	if err != nil {
@@ -19,7 +19,7 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	now := time.Now()
 
 	age := now.Year() - birthDate.Year()
-	if now.YearDay() < birthDate.YearDay(){
+	if now.YearDay() < birthDate.YearDay() {
 		age--
 	}
 

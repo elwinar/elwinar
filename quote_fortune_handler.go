@@ -7,14 +7,8 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-type Quote struct {
-	ID     int64  `db:"id"`
-	Text   string `db:"text"`
-	Author string `db:"author"`
-}
-
 // Roll a new fortune.
-func Fortune(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func QuoteFortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var quote Quote
 
 	err := database.Get(&quote, "SELECT * FROM quotes WHERE id >= (select ABS(RANDOM()) % MAX(id) + 1 FROM quotes) LIMIT 1")

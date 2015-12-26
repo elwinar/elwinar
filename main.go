@@ -52,23 +52,23 @@ func main() {
 	router := httprouter.New()
 
 	// Add the front-office handlers.
-	router.GET("/", Index)
-	router.GET("/read", List)
-	router.GET("/article/:slug", View)
-	router.GET("/fortune", Fortune)
-	router.GET("/sitemap.xml", Sitemap)
+	router.GET("/", IndexHandler)
+	router.GET("/read", ArticleListHandler)
+	router.GET("/article/:slug", ArticleViewHandler)
+	router.GET("/fortune", QuoteFortuneHandler)
+	router.GET("/sitemap.xml", SitemapHandler)
 
 	// Add the back-office handlers.
-	router.GET("/login", Login)
-	router.POST("/login", Authenticate)
-	router.GET("/logout", Logout)
-	router.GET("/write", Write)
-	router.POST("/write", Create)
-	router.GET("/article/:slug/edit", Edit)
-	router.POST("/article/:slug/edit", Update)
-	router.GET("/article/:slug/delete", Delete)
-	router.GET("/article/:slug/publish", Publish)
-	router.GET("/article/:slug/unpublish", Unpublish)
+	router.GET("/login", UserLoginHandler)
+	router.POST("/login", UserAuthenticateHandler)
+	router.GET("/logout", UserLogoutHandler)
+	router.GET("/write", ArticleWriteHandler)
+	router.POST("/write", ArticleCreateHandler)
+	router.GET("/article/:slug/edit", ArticleEditHandler)
+	router.POST("/article/:slug/edit", ArticleUpdateHandler)
+	router.GET("/article/:slug/delete", ArticleDeleteHandler)
+	router.GET("/article/:slug/publish", ArticlePublishHandler)
+	router.GET("/article/:slug/unpublish", ArticleUnpublishHandler)
 
 	// Initialize the server middleware stack.
 	stack := negroni.New()
