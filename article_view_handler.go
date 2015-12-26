@@ -8,7 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// View handle the displaying of articles.
+// ArticleViewHandler handle the displaying of articles.
 func ArticleViewHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var article Article
@@ -29,7 +29,7 @@ func ArticleViewHandler(w http.ResponseWriter, r *http.Request, p httprouter.Par
 		return
 	}
 
-	render(w, r, "article", map[string]interface{}{
+	render(w, r, "article_view", map[string]interface{}{
 		"Title":   article.Title,
 		"Article": article,
 	})

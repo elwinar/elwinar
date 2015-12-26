@@ -7,7 +7,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// Roll a new fortune.
+// QuoteFortuneHandler display a random quote.
 func QuoteFortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var quote Quote
 
@@ -21,7 +21,7 @@ func QuoteFortuneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 		return
 	}
 
-	render(w, r, "fortune", map[string]interface{}{
+	render(w, r, "quote_view", map[string]interface{}{
 		"Title": "Fortune",
 		"Quote": quote,
 	})

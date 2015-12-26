@@ -7,7 +7,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// Delete remove articles.
+// ArticleDeleteHandler remove articles.
 func ArticleDeleteHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	// Ensure the user is logged.

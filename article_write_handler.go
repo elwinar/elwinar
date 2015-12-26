@@ -7,7 +7,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// Write display the form for writing articles.
+// ArticleWriteHandler display the form for writing articles.
 func ArticleWriteHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	// Ensure the user is logged.

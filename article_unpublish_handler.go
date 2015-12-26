@@ -7,7 +7,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// Unpublish switch off visibility of an article.
+// ArticleUnpublishHandler switch off visibility of an article.
 func ArticleUnpublishHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	// Ensure the user is logged.

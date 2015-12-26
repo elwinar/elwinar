@@ -26,13 +26,13 @@ func init() {
 
 	for _, template := range []string{
 		"layout",
-		"article",
+		"index",
+		"login",
+		"article_view",
 		"article_list",
 		"article_form",
 		"article_edit",
-		"index",
-		"fortune",
-		"login",
+		"quote_view",
 	} {
 		raw, err := Asset("views/" + template + ".html")
 		if err != nil {

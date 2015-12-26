@@ -7,7 +7,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// List show all articles available to the user.
+// ArticleListHandler show all articles available to the user.
 func ArticleListHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	var articles []*Article

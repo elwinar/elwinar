@@ -11,12 +11,12 @@
 			{{ if $.Logged }}
 					<nav>
 				{{ if .IsPublished }}
-						<a href="/article/{{ .Slug }}/unpublish" title="unpublish"><span class="fa fa-eye-slash"></span></a>
+						<a href="/articles/{{ .Slug }}/unpublish" title="unpublish"><span class="fa fa-eye-slash"></span></a>
 				{{ else }}
-						<a href="/article/{{ .Slug }}/publish" title="publish"><span class="fa fa-eye"></span></a>
+						<a href="/articles/{{ .Slug }}/publish" title="publish"><span class="fa fa-eye"></span></a>
 				{{ end }}
-						<a href="/article/{{ .Slug }}/edit" title="edit"><span class="fa fa-pencil"></span></a>
-						<a href="/article/{{ .Slug }}/delete" title="delete"><span class="fa fa-trash-o"></span></a>
+						<a href="/articles/{{ .Slug }}/edit" title="edit"><span class="fa fa-pencil"></span></a>
+						<a href="/articles/{{ .Slug }}/delete" title="delete"><span class="fa fa-trash-o"></span></a>
 					</nav>
 			{{ end }}
 				</li>

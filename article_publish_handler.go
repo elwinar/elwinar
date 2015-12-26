@@ -7,7 +7,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// Publish set the published flag of an article to true.
+// ArticlePublishHandler set the published flag of an article to true.
 func ArticlePublishHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	// Ensure the user is logged.

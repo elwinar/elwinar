@@ -7,7 +7,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// Create validate and add new articles in the database.
+// ArticleCreateHandler validate and add new articles in the database.
 func ArticleCreateHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	// Ensure the user is logged.
@@ -42,5 +42,5 @@ func ArticleCreateHandler(w http.ResponseWriter, r *http.Request, _ httprouter.P
 		panic(err)
 	}
 
-	http.Redirect(w, r, "/article/"+r.FormValue("slug"), http.StatusFound)
+	http.Redirect(w, r, "/articles/"+r.FormValue("slug"), http.StatusFound)
 }

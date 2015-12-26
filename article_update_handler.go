@@ -8,7 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// Update do the actual modification of the article in the database.
+// ArticleUpdateHandler do the actual modification of the article in the database.
 func ArticleUpdateHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	// Ensure the user is logged.
@@ -54,5 +54,5 @@ func ArticleUpdateHandler(w http.ResponseWriter, r *http.Request, p httprouter.P
 		panic(err)
 	}
 
-	http.Redirect(w, r, "/article/"+r.FormValue("slug"), http.StatusFound)
+	http.Redirect(w, r, "/articles/"+r.FormValue("slug"), http.StatusFound)
 }

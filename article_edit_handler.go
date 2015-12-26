@@ -8,7 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// Edit show the edition form for articles.
+// ArticleEditHandler show the edition form for articles.
 func ArticleEditHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	// Ensure the user is logged
