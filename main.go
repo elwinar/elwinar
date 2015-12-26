@@ -48,6 +48,7 @@ func main() {
 	router.GET("/read", ArticleListHandler)
 	router.GET("/articles/:slug", ArticleViewHandler)
 	router.GET("/fortune", QuoteFortuneHandler)
+	router.GET("/quotes/:id", QuoteViewHandler)
 	router.GET("/sitemap.xml", SitemapHandler)
 
 	// Add the back-office handlers.

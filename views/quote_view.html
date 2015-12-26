@@ -1,0 +1,8 @@
+{{ inherits "layout" }}
+{{ with .Quote }}
+<h1><a href="/quotes/{{ .ID }}">#{{ .ID }}</a></h1>
+			<blockquote>
+				{{ .Text }}
+				<footer>{{ .Author }}</footer>
+			</blockquote>
+{{ end }}

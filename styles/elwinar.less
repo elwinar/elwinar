@@ -42,7 +42,7 @@
 
 //** Here be dragons!
 
-a:hover {
+a:focus, a:hover {
 	text-decoration: none;
 }
 
@@ -107,6 +107,30 @@ body {
 	
 	> section {
 		margin: 0 @u;
+
+		h1 {
+			a, a:visited, a:focus {
+				color: inherit;
+
+				&:after {
+					content: ' ' @fa-var-link;
+					.fa-icon();
+					color: @gray-lighter;
+					margin-left: @u;
+					display: none;
+				}
+
+				&:hover {
+					color: inherit;
+
+					&:after {
+						display: inline-block;
+						font-size: 75%;
+					}
+				}
+
+			}
+		}
 	
 		ul {
 			padding-left: 1em;
