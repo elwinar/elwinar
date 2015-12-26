@@ -23,11 +23,11 @@ func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 	var urlset sitemap.URLSet
 	urlset.URLs = []sitemap.URL{
 		{
-			Loc:        fmt.Sprintf("%s/", configuration.Domain),
+			Loc:        fmt.Sprintf("%s/", r.Host),
 			ChangeFreq: sitemap.Yearly,
 		},
 		{
-			Loc:        fmt.Sprintf("%s/read", configuration.Domain),
+			Loc:        fmt.Sprintf("%s/read", r.Host),
 			ChangeFreq: sitemap.Weekly,
 		},
 	}
@@ -35,7 +35,7 @@ func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 	// Add the article pages.
 	for _, a := range articles {
 		urlset.URLs = append(urlset.URLs, sitemap.URL{
-			Loc:        fmt.Sprintf("%s/article/%s", configuration.Domain, a.Slug),
+			Loc:        fmt.Sprintf("%s/article/%s", r.Host, a.Slug),
 			LastMod:    &a.UpdatedAt,
 			ChangeFreq: sitemap.Monthly,
 		})

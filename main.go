@@ -10,26 +10,12 @@ import (
 	sessions "github.com/goincremental/negroni-sessions"
 	"github.com/goincremental/negroni-sessions/cookiestore"
 	"github.com/jmoiron/sqlx"
-	_ "github.com/joho/godotenv/autoload"
 	"github.com/julienschmidt/httprouter"
 	"github.com/kelseyhightower/envconfig"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/phyber/negroni-gzip/gzip"
 	"github.com/stretchr/graceful"
 )
-
-// Configuration holds the configuration for the website: which port to listen on,
-// which database to use, etc.
-type Configuration struct {
-	Port     int
-	Domain   string
-	Database string
-	Debug    bool
-	Secret   string
-	Password string
-	Public   string
-	GID      string
-}
 
 var (
 	configuration Configuration

@@ -49,6 +49,7 @@ func init() {
 // render write the given template on a response writer.
 func render(w http.ResponseWriter, r *http.Request, name string, data map[string]interface{}) {
 	data["Logged"] = sessions.GetSession(r).Get("logged")
+	data["Request"] = r
 	data["Configuration"] = configuration
 
 	var rawErrors = sessions.GetSession(r).Flashes("_errors")

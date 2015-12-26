@@ -1,18 +1,23 @@
 build: assets app
 
-assets: *.go package.json bower.json
-	go-bindata -nomemcopy -pkg main -o views.go views/
+assets:
 	go get ./...
 	npm install
 	bower install
 
-app: *.go scripts/*.js styles/*.less
+app:
+	go-bindata -nomemcopy -pkg main -o views.go views/
 	go build -ldflags "-s -linkmode external -extldflags -static -w" -o elwinar
 	gulp
 	touch database.sqlite
 	rambler apply --all
 
-pkg: app
+pkg: 
+	go-bindata -nomemcopy -pkg main -o views.go views/
+	go build -tags docker -ldflags "-s -linkmode external -extldflags -static -w" -o elwinar
+	gulp
+	touch database.sqlite
+	rambler apply --all
 	goupx -q elwinar
 	docker build -t elwinar .
 	docker save elwinar > elwinar.tar
