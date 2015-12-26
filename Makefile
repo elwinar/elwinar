@@ -19,7 +19,7 @@ pkg:
 	touch database.sqlite
 	rambler apply --all
 	goupx -q elwinar
-	docker build -t elwinar .
+	docker build -t elwinar/elwinar .
 	docker save elwinar > elwinar.tar
 
 clean:
