@@ -24,6 +24,7 @@ type Configuration struct {
 	Port     int
 	Domain   string
 	Database string
+	Debug    bool
 	Secret   string
 	Password string
 	Public   string
@@ -50,6 +51,11 @@ func main() {
 
 	// Initialize the router.
 	router := httprouter.New()
+
+	if configuration.Debug {
+		router.GET("/env", EnvironmentHandler)
+		router.GET("/cfg", ConfigurationHandler)
+	}
 
 	// Add the front-office handlers.
 	router.GET("/", IndexHandler)
