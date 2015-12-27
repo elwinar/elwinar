@@ -10,7 +10,7 @@ import (
 // ArticleListHandler show all articles available to the user.
 func ArticleListHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
-	var articles []*Article
+	var articles []Article
 
 	// If the user isn't logged, only show published articles and order them by publication date.
 	// If the user is logged, show all articles and order them by creation date.
