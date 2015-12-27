@@ -20,7 +20,7 @@ pkg:
 	rambler apply --all
 	goupx -q elwinar
 	docker build -t elwinar/elwinar .
-	docker save elwinar > elwinar.tar
+	docker save elwinar/elwinar > elwinar.tar
 
 clean:
 	rm -f elwinar views.go public/*.js public/*.css database.sqlite
