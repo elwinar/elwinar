@@ -62,6 +62,7 @@ func main() {
 	router.GET("/articles/:slug/delete", ArticleDeleteHandler)
 	router.GET("/articles/:slug/publish", ArticlePublishHandler)
 	router.GET("/articles/:slug/unpublish", ArticleUnpublishHandler)
+	router.GET("/quotes", QuoteListHandler)
 
 	// Initialize the server middleware stack.
 	stack := negroni.New()

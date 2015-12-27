@@ -33,6 +33,7 @@ func init() {
 		"article_form",
 		"article_edit",
 		"quote_view",
+		"quote_list",
 	} {
 		raw, err := Asset("views/" + template + ".html")
 		if err != nil {
