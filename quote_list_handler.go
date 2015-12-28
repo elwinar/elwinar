@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -16,7 +15,6 @@ func QuoteListHandler(w http.ResponseWriter, r *http.Request, p httprouter.Param
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(quotes)
 
 	render(w, r, "quote_list", map[string]interface{}{
 		"Title":  "Quotes",

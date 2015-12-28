@@ -2,6 +2,6 @@
 			<h1>Quotes</h1>
 			<ul>
 				{{ range .Quotes }}
-				<li>#{{ .ID }} <cite>{{ .Text }}</cite> {{ .Author }}</li>
+				<li>#{{ .ID }} - {{ .Author }} <cite>{{ .Text }}</cite></li>
 				{{ end }}
 			</ul>
