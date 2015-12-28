@@ -6,7 +6,7 @@ assets:
 	bower install
 
 app:
-	go-bindata -nomemcopy -pkg main -o views.go views/
+	go-bindata -nomemcopy -debug -pkg main -o views.go views/
 	go build -ldflags "-s -linkmode external -extldflags -static -w" -o elwinar
 	gulp
 	touch database.sqlite
