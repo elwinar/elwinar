@@ -3,10 +3,10 @@ node_modules
 bower_components
 storage
 public
-.env
 .vagrant
 elwinar
 elwinar.sqlite
 elwinar.log
 views.go
+*.swp
 
