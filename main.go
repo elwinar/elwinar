@@ -13,7 +13,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"github.com/kelseyhightower/envconfig"
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/phyber/negroni-gzip/gzip"
 	"github.com/stretchr/graceful"
 )
 
@@ -66,7 +65,6 @@ func main() {
 
 	// Initialize the server middleware stack.
 	stack := negroni.New()
-	stack.Use(gzip.Gzip(gzip.DefaultCompression))
 	stack.Use(negroni.NewRecovery())
 	stack.Use(negroni.NewStatic(http.Dir(configuration.Public)))
 	stack.Use(sessions.Sessions("elwinar", cookiestore.New([]byte(configuration.Secret))))
