@@ -15,14 +15,14 @@ pacman -S --noconfirm make
 pacman -S --noconfirm go gcc git subversion mercurial upx ucl
 echo "export GOPATH=/home/vagrant" >> /home/vagrant/.bashrc && export GOPATH=/home/vagrant
 echo "export PATH=$GOPATH/bin:$PATH" >> /home/vagrant/.bashrc && export PATH=$GOPATH/bin:$PATH
-chown vagrant:vagrant -R /home/vagrant/src
 go get github.com/jteeuwen/go-bindata/...
 go get github.com/pwaller/goupx
 go get github.com/elwinar/rambler
+chown vagrant:vagrant -R /home/vagrant
 
 # Javascript tools
 pacman -S --noconfirm nodejs npm
-npm install -g bower gulp
+npm install -g bower gulp phantomjs
 
 # Docker tools
 pacman -S --noconfirm docker
