@@ -1,8 +1,0 @@
-APP_DEBUG=true
-APP_PUBLIC=public/
-APP_DATABASE=database.sqlite
-APP_PORT=8080
-APP_DOMAIN=http://localhost:8080
-APP_SECRET=RandomSecretKey
-APP_PASSWORD=SecretPassword
-APP_GID=UA-12345678-9
