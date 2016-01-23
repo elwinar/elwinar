@@ -5,7 +5,6 @@ package main
 type Configuration struct {
 	Database string
 	Debug    bool
-	GID      string
 	Password string
 	Port     int
 	Public   string
