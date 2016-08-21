@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/codegangsta/negroni"
 	sessions "github.com/goincremental/negroni-sessions"
 	"github.com/goincremental/negroni-sessions/cookiestore"
 	"github.com/jmoiron/sqlx"
@@ -14,6 +13,7 @@ import (
 	"github.com/kelseyhightower/envconfig"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/stretchr/graceful"
+	"github.com/urfave/negroni"
 )
 
 var (

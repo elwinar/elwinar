@@ -1,7 +1,8 @@
 FROM scratch
 MAINTAINER Romain Baugue <romain.baugue@elwinar.com>
 
-ADD elwinar /app
+ADD bin/elwinar-docker /app
+ADD database.sqlite /database.sqlite
 ADD public /public
 
 ENV APP_DATABASE /database.sqlite
