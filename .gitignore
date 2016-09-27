@@ -1,12 +1,10 @@
-vendor
+vendor/src
+bin
+pkg
 node_modules
 bower_components
-storage
 public
-.vagrant
-elwinar
-elwinar.sqlite
-elwinar.log
-views.go
 *.swp
+elwinar.tar
+database.sqlite
 

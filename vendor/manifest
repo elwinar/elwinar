@@ -1,0 +1,226 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/PuerkitoBio/goquery",
+			"repository": "https://github.com/PuerkitoBio/goquery",
+			"revision": "7f4291566cf7cac3be222a933e01a2bed97532b1",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/andybalholm/cascadia",
+			"repository": "https://github.com/andybalholm/cascadia",
+			"revision": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/bitly/go-simplejson",
+			"repository": "https://github.com/bitly/go-simplejson",
+			"revision": "aabad6e819789e569bd6aabf444c935aa9ba1e44",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/boj/redistore",
+			"repository": "https://github.com/boj/redistore",
+			"revision": "fc113767cd6b051980f260d6dbe84b2740c46ab0",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/bradfitz/slice",
+			"repository": "https://github.com/bradfitz/slice",
+			"revision": "a665b5dbaad5fc7474c1193c67ed138df1e1b0e7",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/codegangsta/cli",
+			"repository": "https://github.com/codegangsta/cli",
+			"revision": "168c95418e66e019fe17b8f4f5c45aa62ff80e23",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/crowdmob/goamz/aws",
+			"repository": "https://github.com/crowdmob/goamz",
+			"revision": "3a06871fe9fc0281ca90f3a7d97258d042ed64c0",
+			"branch": "master",
+			"path": "/aws"
+		},
+		{
+			"importpath": "github.com/crowdmob/goamz/dynamodb",
+			"repository": "https://github.com/crowdmob/goamz",
+			"revision": "3a06871fe9fc0281ca90f3a7d97258d042ed64c0",
+			"branch": "master",
+			"path": "/dynamodb"
+		},
+		{
+			"importpath": "github.com/denizeren/dynamostore",
+			"repository": "https://github.com/denizeren/dynamostore",
+			"revision": "69258d14eb58e5a5b894138d7f2f2609a5effc1f",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/elwinar/heirloom",
+			"repository": "https://github.com/elwinar/heirloom",
+			"revision": "7955ed9f1ad5a95cc0b1976b6d30d3478e5aafa9",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/elwinar/rambler",
+			"repository": "https://github.com/elwinar/rambler",
+			"revision": "007ee4ca738efeef800525d3e86d15c9baae4136",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/garyburd/redigo/internal",
+			"repository": "https://github.com/garyburd/redigo",
+			"revision": "ffa8d46ada782d81cfda81a0fbd9f45ceae448e8",
+			"branch": "master",
+			"path": "/internal"
+		},
+		{
+			"importpath": "github.com/garyburd/redigo/redis",
+			"repository": "https://github.com/garyburd/redigo",
+			"revision": "ffa8d46ada782d81cfda81a0fbd9f45ceae448e8",
+			"branch": "master",
+			"path": "/redis"
+		},
+		{
+			"importpath": "github.com/go-sql-driver/mysql",
+			"repository": "https://github.com/go-sql-driver/mysql",
+			"revision": "0b58b37b664c21f3010e836f1b931e1d0b0b0685",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/goincremental/dal",
+			"repository": "https://github.com/goincremental/dal",
+			"revision": "14fa60d0e842a8b7e8589b3fdb66c1d51762b11b",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/goincremental/negroni-sessions",
+			"repository": "https://github.com/goincremental/negroni-sessions",
+			"revision": "bce4c2d0379d56d4afb4bc4a1bc128b8a0193d7a",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/gorilla/context",
+			"repository": "https://github.com/gorilla/context",
+			"revision": "08b5f424b9271eedf6f9f0ce86cb9396ed337a42",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/gorilla/securecookie",
+			"repository": "https://github.com/gorilla/securecookie",
+			"revision": "c13558c2b1c44da35e0eb043053609a5ba3a1f19",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/gorilla/sessions",
+			"repository": "https://github.com/gorilla/sessions",
+			"revision": "1bbba13ba476e132b5a0739b18f1653c3e57d3c1",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/imdario/mergo",
+			"repository": "https://github.com/imdario/mergo",
+			"revision": "50d4dbd4eb0e84778abe37cefef140271d96fade",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/jmoiron/sqlx",
+			"repository": "https://github.com/jmoiron/sqlx",
+			"revision": "7396209bbeada6a4fcc28aa9408f89b2e71cac39",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/joho/godotenv",
+			"repository": "https://github.com/joho/godotenv",
+			"revision": "4ed13390c0acd2ff4e371e64d8b97c8954138243",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/jteeuwen/go-bindata",
+			"repository": "https://github.com/jteeuwen/go-bindata",
+			"revision": "a0ff2567cfb70903282db057e799fd826784d41d",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/julienschmidt/httprouter",
+			"repository": "https://github.com/julienschmidt/httprouter",
+			"revision": "d8ff598a019f2c7bad0980917a588193cf26666e",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/kelseyhightower/envconfig",
+			"repository": "https://github.com/kelseyhightower/envconfig",
+			"revision": "1e291572dcb9ba673cdcdb15e0f422702415ebaf",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/lib/pq",
+			"repository": "https://github.com/lib/pq",
+			"revision": "80f8150043c80fb52dee6bc863a709cdac7ec8f8",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/mattn/go-sqlite3",
+			"repository": "https://github.com/mattn/go-sqlite3",
+			"revision": "c3e9588849195eefa783417c3a53d092f6e93526",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/pwaller/goupx",
+			"repository": "https://github.com/pwaller/goupx",
+			"revision": "1d58e01d5ce273bab8815ed4ded378a948956b81",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/russross/blackfriday",
+			"repository": "https://github.com/russross/blackfriday",
+			"revision": "93622da34e54fb6529bfb7c57e710f37a8d9cbd8",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/shurcooL/sanitized_anchor_name",
+			"repository": "https://github.com/shurcooL/sanitized_anchor_name",
+			"revision": "10ef21a441db47d8b13ebcc5fd2310f636973c77",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/sourcegraph/sitemap",
+			"repository": "https://github.com/sourcegraph/sitemap",
+			"revision": "5d2a42ccab8dc0079484263b326b9a3191d5bee8",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/stretchr/graceful",
+			"repository": "https://github.com/stretchr/graceful",
+			"revision": "842f31108f8d3512ce3176d00bf1a32db1d5e3af",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/urfave/negroni",
+			"repository": "https://github.com/urfave/negroni",
+			"revision": "6edff56736fa7bd546812f149e8cdaae61e5a38f",
+			"branch": "master"
+		},
+		{
+			"importpath": "golang.org/x/net/html",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "07b51741c1d6423d4a6abab1c49940ec09cb1aaf",
+			"branch": "master",
+			"path": "/html"
+		},
+		{
+			"importpath": "gopkg.in/mgo.v2",
+			"repository": "https://gopkg.in/mgo.v2",
+			"revision": "3f83fa5005286a7fe593b055f0d7771a7dce4655",
+			"branch": "v2"
+		},
+		{
+			"importpath": "gopkg.in/tylerb/graceful.v1",
+			"repository": "https://gopkg.in/tylerb/graceful.v1",
+			"revision": "842f31108f8d3512ce3176d00bf1a32db1d5e3af",
+			"branch": "master"
+		}
+	]
+}

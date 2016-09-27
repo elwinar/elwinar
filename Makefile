@@ -1,33 +1,24 @@
-dependencies: embeded *.go package.json bower.json
-	go get ./...
+dependencies:
+	gb vendor restore
+	gb build github.com/jteeuwen/go-bindata/go-bindata
+	gb build github.com/pwaller/goupx
+	gb build github.com/elwinar/rambler
 	npm install
 	bower install
 
-assets: scripts/*.js styles/*.less
-	gulp
+build:
+	node_modules/.bin/gulp
+	bin/go-bindata -nomemcopy -pkg main -o src/elwinar/views.go views/
+	bin/rambler apply
+	gb build -ldflags "-s -linkmode external -extldflags -static -w" -tags "docker"
 
-database: migrations/*.sql
-	touch database.sqlite
-	rambler apply --all
-
-embeded: 
-	go-bindata -nomemcopy -debug -pkg main -o views.go views/
-
-embeded-static:
-	go-bindata -nomemcopy -pkg main -o views.go views/
-
-binary: *.go
-	go build -o elwinar
-
-binary-static:
-	go build -o elwinar -ldflags "-s -linkmode external -extldflags -static -w" -tags docker
-	goupx -q elwinar
-
-pkg: dependencies assets embeded-static binary-static
+dist:
+	goupx -q bin/elwinar-docker
 	docker build -t elwinar/elwinar .
 	docker save elwinar/elwinar > elwinar.tar
 
 clean:
-	rm -f elwinar views.go public/*.js public/*.css database.sqlite elwinar.tar
-	rm -rf node_modules bower_components public/fonts
+	rm -f src/elwinar/views.go elwinar.tar
+	rm -rf node_modules bower_components pkg bin vendor/src public
 
+.DEFAULT: build
