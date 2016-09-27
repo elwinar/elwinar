@@ -35,7 +35,7 @@ func init() {
 		"quote_view",
 		"quote_list",
 	} {
-		raw, err := Asset("views/" + template + ".html")
+		raw, err := Asset("src/views/" + template + ".html")
 		if err != nil {
 			panic(err)
 		}
