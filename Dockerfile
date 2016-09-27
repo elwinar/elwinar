@@ -1,7 +1,7 @@
 FROM scratch
 MAINTAINER Romain Baugue <romain.baugue@elwinar.com>
 
-ADD build/* /app/
+ADD build /app/
 
 ENV APP_DATABASE /app/database.sqlite
 ENV APP_DEBUG false
