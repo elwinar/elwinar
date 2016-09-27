@@ -12,6 +12,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"github.com/kelseyhightower/envconfig"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/sourcegraph/sitemap"
 	"github.com/stretchr/graceful"
 	"github.com/urfave/negroni"
 )
@@ -84,4 +85,68 @@ func main() {
 	if err != nil {
 		log.Fatalln("unable to run the server:", err)
 	}
+}
+
+// Index displays the home page of the website.
+func IndexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
+	timezone, err := time.LoadLocation("Europe/Paris")
+	if err != nil {
+		timezone = time.FixedZone("Europe/Paris", 1)
+	}
+
+	birthDate := time.Date(1990, time.November, 5, 0, 0, 0, 0, timezone)
+	now := time.Now()
+
+	age := now.Year() - birthDate.Year()
+	if now.YearDay() < birthDate.YearDay() {
+		age--
+	}
+
+	render(w, r, "index", map[string]interface{}{
+		"Title": "Passionate developer",
+		"Age":   age,
+	})
+}
+
+// Sitemap will display an XML map of the website.
+func SitemapHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
+	var articles []*Article
+
+	// Get each article.
+	err := database.Select(&articles, "SELECT id, title, slug, tagline, text, tags, is_published, created_at, updated_at, published_at FROM articles WHERE is_published = ? ORDER BY updated_at DESC", true)
+	if err != nil {
+		panic(err)
+	}
+
+	// Add the static pages.
+	var urlset sitemap.URLSet
+	urlset.URLs = []sitemap.URL{
+		{
+			Loc:        fmt.Sprintf("%s/", r.Host),
+			ChangeFreq: sitemap.Yearly,
+		},
+		{
+			Loc:        fmt.Sprintf("%s/read", r.Host),
+			ChangeFreq: sitemap.Weekly,
+		},
+	}
+
+	// Add the article pages.
+	for _, a := range articles {
+		urlset.URLs = append(urlset.URLs, sitemap.URL{
+			Loc:        fmt.Sprintf("%s/article/%s", r.Host, a.Slug),
+			LastMod:    &a.UpdatedAt,
+			ChangeFreq: sitemap.Monthly,
+		})
+	}
+
+	// Marshal the sitemap to XML.
+	raw, err := sitemap.Marshal(&urlset)
+	if err != nil {
+		panic(err)
+	}
+
+	w.Write(raw)
 }

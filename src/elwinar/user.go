@@ -24,3 +24,17 @@ func UserAuthenticateHandler(w http.ResponseWriter, r *http.Request, _ httproute
 	sessions.GetSession(r).Set("logged", true)
 	http.Redirect(w, r, "/read", http.StatusFound)
 }
+
+// Login display the login form.
+func UserLoginHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	render(w, r, "login", map[string]interface{}{
+		"Title": "Login",
+	})
+}
+
+// Logout de-authenticate the user.
+func UserLogoutHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
+	sessions.GetSession(r).Clear()
+	http.Redirect(w, r, r.Referer(), http.StatusFound)
+}
