@@ -8,7 +8,7 @@ dependencies:
 
 build:
 	node_modules/.bin/gulp
-	bin/go-bindata -nomemcopy -pkg main -o src/elwinar/views.go views/
+	bin/go-bindata -nomemcopy -pkg main -o src/elwinar/views.go src/views/
 	bin/rambler apply
 	gb build -ldflags "-s -linkmode external -extldflags -static -w" -tags "docker"
 

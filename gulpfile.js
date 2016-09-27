@@ -10,7 +10,7 @@ var uncss = require('gulp-uncss');
 
 gulp.task('styles', function() {
 	gulp.src([
-		'styles/*.less',
+		'src/styles/*.less',
 		'bower_components/prism/themes/prism.css',
 	])
 	.pipe(plumber())
@@ -19,19 +19,19 @@ gulp.task('styles', function() {
 		paths: [ 'styles' ],
 	}))
 	.pipe(rename({extname: '.css'}))
-	.pipe(uncss({html: ['views/*.html']}))
+	.pipe(uncss({html: ['src/views/*.html']}))
 	.pipe(autoprefixer())
 	.pipe(minify())
-	.pipe(gulp.dest('public/'));
+	.pipe(gulp.dest('build/public/'));
 });
 
 gulp.task('fonts', function() {
 	gulp.src([
 		'bower_components/bootstrap/fonts/*',
 		'bower_components/fontawesome/fonts/*',
-		'fonts/*',
+		'src/fonts/*',
 	])
-	.pipe(gulp.dest('public/fonts/'));
+	.pipe(gulp.dest('build/public/fonts/'));
 });
 
 gulp.task('scripts', function () {
@@ -46,18 +46,18 @@ gulp.task('scripts', function () {
 		'bower_components/prism/components/prism-markup.js',
 		'bower_components/prism/components/prism-php.js',
 		'bower_components/prism/components/prism-ruby.js',
-		'scripts/*.js',
+		'src/scripts/*.js',
 	])
 	.pipe(plumber())
 	.pipe(concat('app.js'))
 	.pipe(uglify())
-	.pipe(gulp.dest('public'));
+	.pipe(gulp.dest('build/public'));
 });
 
 gulp.task('watch', function () {
-	gulp.watch('scripts/*.js', ['scripts']);
-	gulp.watch('styles/*.less', ['styles']);
-	gulp.watch('views/*.html', ['styles']);
+	gulp.watch('src/scripts/*.js', ['scripts']);
+	gulp.watch('src/styles/*.less', ['styles']);
+	gulp.watch('src/views/*.html', ['styles']);
 });
 
 gulp.task('default', ['styles', 'fonts', 'scripts']);
