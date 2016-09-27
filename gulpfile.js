@@ -16,7 +16,7 @@ gulp.task('styles', function() {
 	.pipe(plumber())
 	.pipe(concat('app.less'))
 	.pipe(less({
-		paths: [ 'styles' ],
+		paths: [ 'src/styles' ],
 	}))
 	.pipe(rename({extname: '.css'}))
 	.pipe(uncss({html: ['src/views/*.html']}))

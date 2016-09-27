@@ -1,16 +1,14 @@
 FROM scratch
 MAINTAINER Romain Baugue <romain.baugue@elwinar.com>
 
-ADD bin/elwinar-docker /app
-ADD database.sqlite /database.sqlite
-ADD public /public
+ADD build/* /app/
 
-ENV APP_DATABASE /database.sqlite
+ENV APP_DATABASE /app/database.sqlite
 ENV APP_DEBUG false
 ENV APP_PORT 80
-ENV APP_PUBLIC /public
+ENV APP_PUBLIC /app/public
 
 EXPOSE 80
 
-ENTRYPOINT ["/app"]
+ENTRYPOINT ["/app/app"]
 
