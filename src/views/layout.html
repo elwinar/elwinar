@@ -27,12 +27,12 @@
 			{{ yield }}
 		</section>
 		<footer>
-			<a href="http://validator.w3.org/check/referer"><span class="fa fa-html5"></span></a>
-			<a href="http://jigsaw.w3.org/css-validator/check/referer"><span class="fa fa-css3"></span></a>
+			<a href="http://validator.w3.org/check/referer"><span class="icon-html5"></span></a>
+			<a href="http://jigsaw.w3.org/css-validator/check/referer"><span class="icon-css3"></span></a>
 {{ if .Logged }}
-			<a href="/logout"><span class="fa fa-lock"></span></a>
+			<a href="/logout"><span class="icon-lock"></span></a>
 {{ else }}
-			<a href="/login"><span class="fa fa-unlock-alt"></span></a>
+			<a href="/login"><span class="icon-unlock"></span></a>
 {{ end }}
 		</footer>
 		<script>

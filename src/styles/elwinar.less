@@ -1,9 +1,9 @@
 @import "bower_components/bootstrap/less/bootstrap.less";
-@import "bower_components/fontawesome/less/font-awesome.less";
 @import "utils.less";
 
 // Custom fonts
 @import "futura.less";
+@import "dings.less";
 
 //** Customize the look and feel of the bootstrap components
 @brand-primary: #B4311C;
@@ -47,56 +47,56 @@ a:focus, a:hover {
 }
 
 html {
-       overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 body {
 	.container();
 	padding: 1em auto;
-	
+
 	> header {
 		.navbar();
-		
+
 		> h1 {
 			font-size: @font-size-h1 * 1.5;
 			line-height: @font-size-h1 * 1.5;
 			margin-left: @u;
 			margin-right: @u;
-			
+
 			.tablet-and-desktop({
 				margin-bottom: 0;
 			});
 		}
-		
+
 		> p.headline {
 			color: @gray-dark;
 			font-size: @font-size-base * 1.4;
 			margin: 0 @u;
-			
+
 			.phone({
 				display: none;
 			});
 		}
-		
+
 		> nav {
 			font-size: @font-size-base * 1.4;
 			margin-top: -@nav-link-padding-vertical;
-			
+
 			.tablet-and-desktop({
 				.pull-right();
 			});
-			
+
 			> ul {
 				.nav();
 				.nav-pills();
-			
+
 				.phone({
 					.nav-stacked();
 				});
-				
+
 				a {
 					color: inherit;
-					
+
 					&:hover {
 						color: inherit;
 					}
@@ -104,7 +104,7 @@ body {
 			}
 		}
 	}
-	
+
 	> section {
 		margin: 0 @u;
 
@@ -113,10 +113,11 @@ body {
 				color: inherit;
 
 				&:after {
-					content: ' ' @fa-var-link;
-					.fa-icon();
+					content: "\e008";
+					font-family: "dings";
 					color: @gray-lighter;
 					margin-left: @u;
+					font-size: 75%;
 					display: none;
 				}
 
@@ -125,57 +126,56 @@ body {
 
 					&:after {
 						display: inline-block;
-						font-size: 75%;
 					}
 				}
 
 			}
 		}
-	
+
 		ul {
 			padding-left: 1em;
-			
+
 			&.errors {
 				.text-danger();
 			}
 		}
-		
+
 		header {
 			p {
 				.lead();
 			}
 		}
-		
+
 		form {
 			margin-bottom: @line-height-computed;
-			
+
 			input,
 			textarea {
 				.form-control();
 				.input-sm();
 				margin-top: @line-height-computed;
 			}
-			
+
 			textarea {
 				height: 10em;
 				resize:vertical;
 			}
 		}
 	}
-	
+
 	> footer {
 		margin: @line-height-computed @u;
 		font-size: @font-size-large;
 		.pull-right();
-		
+
 		.phone({
 			display: none;
 		});
-		
+
 		> a {
 			color: inherit;
-			
-			span.fa-html5 {
+
+			span.dings-html5 {
 				color: @brand-primary;
 				font-size: 1.2em;
 			}

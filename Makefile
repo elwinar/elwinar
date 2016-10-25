@@ -1,8 +1,14 @@
+default: build
+all: dependencies build dist
+
 .PHONY: dependencies
 dependencies:
 	gb vendor restore
 	npm install
 	bower install
+	go get github.com/jteeuwen/go-bindata/...
+	go get github.com/elwinar/rambler
+	go get github.com/pwaller/goupx
 
 .PHONY: build
 build:
@@ -26,4 +32,3 @@ clean:
 mrproper:
 	rm -rf node_modules bower_components vendor/src
 
-.DEFAULT: build

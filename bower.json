@@ -15,7 +15,6 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.2",
-    "fontawesome": "~4.3.0",
     "speakingurl": "~1.1.0",
     "prism": "*"
   }
