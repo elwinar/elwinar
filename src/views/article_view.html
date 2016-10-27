@@ -6,12 +6,12 @@
 	{{ if $.Logged }}
 			<nav>
 		{{ if .IsPublished }}
-				<a href="/articles/{{ .Slug }}/unpublish" title="unpublish"><span class="fa fa-eye-slash"></span></a>
+				<a href="/articles/{{ .Slug }}/unpublish" title="unpublish"><span class="icon-eye-slash"></span></a>
 		{{ else }}
-				<a href="/articles/{{ .Slug }}/publish" title="publish"><span class="fa fa-eye"></span></a>
+				<a href="/articles/{{ .Slug }}/publish" title="publish"><span class="icon-eye"></span></a>
 		{{ end }}
-				<a href="/articles/{{ .Slug }}/edit" title="edit"><span class="fa fa-pencil"></span></a>
-				<a href="/articles/{{ .Slug }}/delete" title="delete"><span class="fa fa-trash-o"></span></a>
+				<a href="/articles/{{ .Slug }}/edit" title="edit"><span class="icon-pencil"></span></a>
+				<a href="/articles/{{ .Slug }}/delete" title="delete"><span class="icon-trash-o"></span></a>
 			</nav>
 	{{ end }}
 {{ end }}
