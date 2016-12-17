@@ -10,5 +10,4 @@ ENV APP_PUBLIC /app/public
 
 EXPOSE 80
 
-ENTRYPOINT ["/app/app"]
-
+CMD /app/app
