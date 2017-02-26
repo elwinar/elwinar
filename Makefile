@@ -1,5 +1,5 @@
 default: build
-all: dependencies build dist
+all: dependencies build
 
 .PHONY: dependencies
 dependencies:
@@ -13,16 +13,11 @@ dependencies:
 .PHONY: build
 build:
 	node_modules/.bin/gulp
+	rambler apply --all
 	go-bindata -nomemcopy -pkg main -o src/app/views.go src/views/
-	rambler apply
-	gb build -ldflags "-s -linkmode external -extldflags -static -w" -tags "docker"
-	mv bin/app-docker build/app
-
-.PHONY: dist
-dist:
-	goupx -q build/app
-	docker build -t elwinar/elwinar .
-	docker save elwinar/elwinar > build/elwinar.tar
+	gb build -ldflags "-s -linkmode external -extldflags -static -w"
+	goupx -q bin/app
+	mv bin/app build/app
 
 .PHONY: clean
 clean:
