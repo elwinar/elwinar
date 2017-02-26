@@ -1,6 +1,6 @@
 {{ inherits "layout" }}
 {{ with .Article }}
-			<h1>{{ .Title }}</h1>
+			<h1><a href="/articles/{{ .Slug }}">{{ .Title }}</a></h1>
 			<p class="lead">{{ .PublishedAt | Format "2006.01.02" }}</p>
 			{{ .MarshalHTML }}
 	{{ if $.Logged }}
