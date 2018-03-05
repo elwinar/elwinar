@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/goincremental/negroni-sessions"
+	sessions "github.com/goincremental/negroni-sessions"
 	"github.com/julienschmidt/httprouter"
 	"github.com/russross/blackfriday"
 )
@@ -234,12 +234,6 @@ func ArticleViewHandler(w http.ResponseWriter, r *http.Request, p httprouter.Par
 
 	if err == sql.ErrNoRows {
 		http.Error(w, "Page not found", http.StatusNotFound)
-		return
-	}
-
-	// Reject the request if the user isn't logged and that the article isn't published.
-	if sessions.GetSession(r).Get("logged") != true && !article.IsPublished {
-		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
 
