@@ -15,6 +15,7 @@
 
 @font-family-sans-serif: "FuturaLT", Helvetica, Arial, sans-serif;
 @font-size-base: 17px;
+@font-size-code: 13px;
 @line-height-base: 1.6;
 
 @text-color: @gray;
@@ -160,6 +161,15 @@ body {
 				height: 10em;
 				resize:vertical;
 			}
+		}
+
+		pre {
+			border: none;
+			padding: 0;
+		}
+
+		code {
+			font-size: @font-size-code;
 		}
 	}
 

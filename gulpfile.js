@@ -11,7 +11,7 @@ var uncss = require('gulp-uncss');
 gulp.task('styles', function() {
 	gulp.src([
 		'src/styles/*.less',
-		'bower_components/prism/themes/prism.css',
+		'bower_components/highlightjs/styles/github.css',
 	])
 	.pipe(plumber())
 	.pipe(concat('app.less'))
@@ -39,13 +39,7 @@ gulp.task('scripts', function () {
 		'bower_components/jquery/dist/jquery.js',
 		'bower_components/bootstrap/dist/js/bootstrap.js',
 		'bower_components/speakingurl/speakingurl.min.js',
-		'bower_components/prims/components/prism-bash.js',
-		'bower_components/prism/components/prism-core.js',
-		'bower_components/prism/components/prism-clike.js',
-		'bower_components/prism/components/prism-javascript.js',
-		'bower_components/prism/components/prism-markup.js',
-		'bower_components/prism/components/prism-php.js',
-		'bower_components/prism/components/prism-ruby.js',
+		'bower_components/highlightjs/highlight.pack.js',
 		'src/scripts/*.js',
 	])
 	.pipe(plumber())
