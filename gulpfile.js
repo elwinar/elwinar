@@ -11,7 +11,7 @@ var uncss = require('gulp-uncss');
 gulp.task('styles', function() {
 	gulp.src([
 		'src/styles/*.less',
-		'bower_components/highlightjs/styles/github.css',
+		'bower_components/highlightjs/styles/atom-one-light.css',
 	])
 	.pipe(plumber())
 	.pipe(concat('app.less'))
