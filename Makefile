@@ -5,7 +5,7 @@ all: dependencies build
 dependencies:
 	gb vendor restore
 	npm install
-	bower install
+	node_modules/.bin/bower install
 	go get github.com/jteeuwen/go-bindata/...
 	go get github.com/elwinar/rambler
 	go get github.com/pwaller/goupx

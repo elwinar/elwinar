@@ -27,8 +27,8 @@
 			{{ yield }}
 		</section>
 		<footer>
-			<a href="http://validator.w3.org/check/referer"><span class="icon-html5"></span></a>
-			<a href="http://jigsaw.w3.org/css-validator/check/referer"><span class="icon-css3"></span></a>
+			<a href="https://validator.w3.org/nu/?doc=http://{{ .Request.Host }}{{ .Request.URL.String }}"><span class="icon-html5"></span></a>
+			<a href="http://jigsaw.w3.org/css-validator/validator?uri=http://{{ .Request.Host }}{{ .Request.URL.String }}"><span class="icon-css3"></span></a>
 {{ if .Logged }}
 			<a href="/logout"><span class="icon-lock"></span></a>
 {{ else }}
