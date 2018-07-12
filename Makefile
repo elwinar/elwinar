@@ -4,8 +4,7 @@ all: dependencies build
 .PHONY: dependencies
 dependencies:
 	gb vendor restore
-	npm install
-	node_modules/.bin/bower install
+	yarn install
 	go get github.com/jteeuwen/go-bindata/...
 	go get github.com/elwinar/rambler
 	go get github.com/pwaller/goupx

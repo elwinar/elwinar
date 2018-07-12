@@ -12,6 +12,8 @@
     "gulp-uncss": "^1.0.4"
   },
   "dependencies": {
-    "bower": "^1.8.2"
+    "bootstrap": "^3.3.2",
+    "highlightjs": "^9.10.0",
+    "speakingurl": "^14.0.1"
   }
 }

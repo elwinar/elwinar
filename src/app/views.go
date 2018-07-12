@@ -92,7 +92,7 @@ func srcViewsArticle_editHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/article_edit.html", size: 733, mode: os.FileMode(420), modTime: time.Unix(1488021857, 0)}
+	info := bindataFileInfo{name: "src/views/article_edit.html", size: 733, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -112,7 +112,7 @@ func srcViewsArticle_formHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/article_form.html", size: 774, mode: os.FileMode(420), modTime: time.Unix(1488021857, 0)}
+	info := bindataFileInfo{name: "src/views/article_form.html", size: 774, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -132,7 +132,7 @@ func srcViewsArticle_listHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/article_list.html", size: 901, mode: os.FileMode(420), modTime: time.Unix(1488021857, 0)}
+	info := bindataFileInfo{name: "src/views/article_list.html", size: 901, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -152,7 +152,7 @@ func srcViewsArticle_viewHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/article_view.html", size: 688, mode: os.FileMode(420), modTime: time.Unix(1488109929, 0)}
+	info := bindataFileInfo{name: "src/views/article_view.html", size: 688, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -172,7 +172,7 @@ func srcViewsIndexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/index.html", size: 287, mode: os.FileMode(420), modTime: time.Unix(1488021857, 0)}
+	info := bindataFileInfo{name: "src/views/index.html", size: 287, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -192,7 +192,7 @@ func srcViewsLayoutHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/layout.html", size: 1787, mode: os.FileMode(420), modTime: time.Unix(1520703162, 0)}
+	info := bindataFileInfo{name: "src/views/layout.html", size: 1787, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -212,7 +212,7 @@ func srcViewsLoginHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/login.html", size: 184, mode: os.FileMode(420), modTime: time.Unix(1488021857, 0)}
+	info := bindataFileInfo{name: "src/views/login.html", size: 184, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -232,7 +232,7 @@ func srcViewsQuote_listHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/quote_list.html", size: 163, mode: os.FileMode(420), modTime: time.Unix(1488021857, 0)}
+	info := bindataFileInfo{name: "src/views/quote_list.html", size: 163, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -252,7 +252,7 @@ func srcViewsQuote_viewHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/quote_view.html", size: 188, mode: os.FileMode(420), modTime: time.Unix(1488021857, 0)}
+	info := bindataFileInfo{name: "src/views/quote_view.html", size: 188, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -272,7 +272,7 @@ func srcViewsUncssHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "src/views/uncss.html", size: 1101, mode: os.FileMode(420), modTime: time.Unix(1520521168, 0)}
+	info := bindataFileInfo{name: "src/views/uncss.html", size: 1101, mode: os.FileMode(420), modTime: time.Unix(1531405935, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

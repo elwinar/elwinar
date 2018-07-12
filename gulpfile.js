@@ -11,7 +11,7 @@ var uncss = require('gulp-uncss');
 gulp.task('styles', function() {
 	gulp.src([
 		'src/styles/*.less',
-		'bower_components/highlightjs/styles/atom-one-light.css',
+		'node_modules/highlightjs/styles/atom-one-light.css',
 	])
 	.pipe(plumber())
 	.pipe(concat('app.less'))
@@ -27,8 +27,8 @@ gulp.task('styles', function() {
 
 gulp.task('fonts', function() {
 	gulp.src([
-		'bower_components/bootstrap/fonts/*',
-		'bower_components/fontawesome/fonts/*',
+		'node_modules/bootstrap/fonts/*',
+		'node_modules/fontawesome/fonts/*',
 		'src/fonts/*',
 	])
 	.pipe(gulp.dest('build/public/fonts/'));
@@ -36,10 +36,10 @@ gulp.task('fonts', function() {
 
 gulp.task('scripts', function () {
 	gulp.src([
-		'bower_components/jquery/dist/jquery.js',
-		'bower_components/bootstrap/dist/js/bootstrap.js',
-		'bower_components/speakingurl/speakingurl.min.js',
-		'bower_components/highlightjs/highlight.pack.js',
+		'node_modules/jquery/dist/jquery.js',
+		'node_modules/bootstrap/dist/js/bootstrap.js',
+		'node_modules/speakingurl/speakingurl.min.js',
+		'node_modules/highlightjs/highlight.pack.js',
 		'src/scripts/*.js',
 	])
 	.pipe(plumber())
