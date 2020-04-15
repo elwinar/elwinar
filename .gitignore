@@ -1,10 +1,5 @@
-vendor/src
-bin
-pkg
-node_modules
-bower_components
-public
-*.swp
-elwinar.tar
-database.sqlite
+/.cache
+/build/
+/env
+/node_modules/
 

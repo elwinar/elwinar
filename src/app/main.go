@@ -12,6 +12,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"github.com/kelseyhightower/envconfig"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/rs/cors"
 	"github.com/sourcegraph/sitemap"
 	"github.com/stretchr/graceful"
 	"github.com/urfave/negroni"
@@ -67,6 +68,9 @@ func main() {
 	// Initialize the server middleware stack.
 	stack := negroni.New()
 	stack.Use(negroni.NewRecovery())
+	stack.Use(cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},
+	}))
 	stack.Use(negroni.NewStatic(http.Dir(configuration.Public)))
 	stack.Use(sessions.Sessions("elwinar", cookiestore.New([]byte(configuration.Secret))))
 	stack.UseHandler(router)

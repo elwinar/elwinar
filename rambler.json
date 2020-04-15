@@ -1,5 +1,0 @@
-{
-	"driver": "sqlite",
-	"database": "build/database.sqlite",
-	"directory": "src/database"
-}

@@ -3,26 +3,12 @@ all: dependencies build
 
 .PHONY: dependencies
 dependencies:
-	gb vendor restore
-	yarn install
+	npm install
 	go get github.com/jteeuwen/go-bindata/...
-	go get github.com/elwinar/rambler
-	go get github.com/pwaller/goupx
 
 .PHONY: build
 build:
-	node_modules/.bin/gulp
-	rambler apply --all
+	./node_modules/.bin/parcel build -d build/public/ src/styles/elwinar.less
 	go-bindata -nomemcopy -pkg main -o src/app/views.go src/views/
-	gb build -ldflags "-s -linkmode external -extldflags -static -w"
-	goupx -q bin/app
-	mv bin/app build/app
-
-.PHONY: clean
-clean:
-	rm -rf src/app/views pkg bin build
-
-.PHONY: mrproper
-mrproper:
-	rm -rf node_modules bower_components vendor/src
+	go build -o build/app ./src/app
 
